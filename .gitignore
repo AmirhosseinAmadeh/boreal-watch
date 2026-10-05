@@ -1,0 +1,5 @@
+source/
+pipeline/out/*
+!pipeline/out/*.json
+__pycache__/
+*.pyc

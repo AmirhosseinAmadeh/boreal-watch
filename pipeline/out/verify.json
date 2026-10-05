@@ -1,0 +1,12 @@
+{
+ "silhouette_iou": 0.9988,
+ "metal_luminance_mae": 6.76,
+ "dial_ink_iou": 0.7541,
+ "dial_ink_precision": 0.8513,
+ "dial_ink_recall": 0.8684,
+ "dial_edge_chamfer_px": {
+  "photo_to_model": 1.024,
+  "model_to_photo": 0.453
+ },
+ "hands_iou": 0.5337
+}

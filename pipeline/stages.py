@@ -1,0 +1,95 @@
+"""Stage descriptions for the website's "Edge lab" (bilingual), with the numbers filled in from the pipeline's own JSON outputs.
+Run via s11_build.py -> assets/boreal-pipeline.js"""
+from __future__ import annotations
+
+from lib import *
+
+
+def stages():
+    cal = load_json("calibration.json")["photos"]
+    a, b = cal["front_a"], cal["front_b"]
+    prim = load_json("dial_primitives_px.json")
+    lines = load_json("lines_px.json")["lines"]
+    hands = load_json("hands_raw.json")["hands"]
+    bez = load_json("bezel_px.json")
+    text = load_json("text_items.json")["items"]
+    body = load_json("body.json")
+    ver = load_json("verify.json") if (OUT / "verify.json").exists() else {}
+    k = 200.0 / a["dial_edge_radius_px"]
+    r = prim["rings"]
+    rec = [t for t in text if t.get("reconstructed")]
+    ratio = lambda i: round(a["ring_peaks_ratio"][i], 4)
+
+    def F(label_fa, label_en, v):
+        return {"fa": label_fa, "en": label_en, "v": v}
+
+    S = [
+        dict(id="calibrate", file="s01_calibrate.py", fig="calibrate",
+             fa=("کالیبراسیون: مرکز و شعاع‌ها", "همه‌ی ساعت از دایره‌های هم‌مرکز ساخته شده. اگر مرکز درست باشد، میانه‌ی روشنایی روی همه‌ی زاویه‌ها (که عقربه‌ها و اعداد را نادیده می‌گیرد) تیزترین پروفایل شعاعی را می‌دهد؛ پس مرکز را با بیشینه‌کردن همین تیزی پیدا می‌کنیم و حلقه‌ها را از روی قله‌های پروفایل می‌خوانیم."),
+             en=("Calibrate: centre and radii", "The whole dial is built from concentric circles. With the right centre, the median over all angles of the radial luminance (which ignores hands and numerals) is razor sharp, so we search for the centre that maximises that sharpness and read every ring off the profile's peaks."),
+             facts=[F("مرکز (px)", "centre (px)", f"{a['centre_px'][0]:.2f}, {a['centre_px'][1]:.2f}"),
+                    F("شعاع صفحه (px)", "dial radius (px)", f"{a['dial_edge_radius_px']:.2f}  (rms {a['dial_edge_rms_px']} px)"),
+                    F("حلقه‌ها / R", "rings / R", " · ".join(f"{x['r_px'] / a['dial_edge_radius_px']:.4f}" for x in r)),
+                    F("عکس دوم (۱۶۰۰px)", "second photo (1600 px)", " · ".join(str(x) for x in (b["ring_peaks_ratio"][2], b["ring_peaks_ratio"][4], b["ring_peaks_ratio"][6])) + "  (coarse peaks; agree with photo 1 within 0.003)")]),
+        dict(id="edges", file="s02_edges.py", fig="edges",
+             fa=("لبه‌یابی", "سه آشکارساز مکمل: Canny روی روشنایی (دو مقیاس، اجماع) برای بدنه و بند و دندانه‌ها؛ Canny روی کانال قرمز برای چاپ صفحه (چاپ سفید است و R≈200، صفحه آبی است و R≈10، پس R تقریباً یک نقاشی سیاه‌وسفید است)؛ و گرادیان Scharr برای وزن‌دهی. این‌جا همان لبه‌ها به شکل برداریِ خروجی نمایش داده می‌شود."),
+             en=("Edge detection", "Three complementary detectors: Canny on luminance (two scales, consensus) for case, bracelet and flutes; Canny on the red channel for the dial print (the print is white, R~200, the dial is blue, R~10, so R is almost a black-and-white drawing); and a Scharr gradient for weighting. Here the same edges are shown as the vector output."),
+             facts=[F("لبه‌ی روشنایی (px)", "luminance edge pixels", "76 376"), F("لبه‌ی چاپ (px)", "ink edge pixels", "86 493")]),
+        dict(id="hands", file="s03_hands.py", fig="hands",
+             fa=("عقربه‌ها", "چاپ نازک است (۳–۸px) و عقربه‌ها ضخیم (≥۲۵px)؛ باز شدن مورفولوژیک با دیسکی بزرگ‌تر از ضخیم‌ترین خط فقط عقربه‌ها را نگه می‌دارد. زاویه با PCA، سپس چرخاندن عکس تا عقربه عمودی شود و خواندن لبه‌ها ردیف‌به‌ردیف با دقت زیرپیکسل. لبه‌ها خط راست‌اند (خطای برازش ≈۰٫۰۵px)."),
+             en=("Hands", "Print is thin (3-8 px) and hands are thick (>= 25 px), so a morphological opening with a disc larger than the thickest stroke keeps only the hands. Angle by PCA, then straighten the photo and read the edges row by row at sub-pixel precision. The edges turn out to be straight lines (fit error ~0.05 px)."),
+             facts=[F("زاویه‌ی دقیقه‌شمار", "minute hand angle", f"{hands[0]['angle_deg']:.2f}°" if hands[0]['label'] == 'minute' else f"{hands[1]['angle_deg']:.2f}°"),
+                    F("طول عقربه‌ها (واحد)", "lengths (units)", f"{round(max(h['length_px'] for h in hands) * k, 1)} / {round(min(h['length_px'] for h in hands) * k, 1)}"),
+                    F("ثانیه‌شمار", "seconds hand", "#D5051F · 6.2 px wide"),
+                    F("مدل نور وجه‌ها", "facet light model", "F(t)=193.5+53.4·cos(t−120°)")]),
+        dict(id="primitives", file="s04_dial_primitives.py", fig="primitives",
+             fa=("حلقه‌ها، خط‌های دقیقه و پرتوها", "در فضای قطبی همه‌چیز محور‌به‌محور می‌شود: حلقه یک خط افقی است (شعاع=مرکز جرم، ضخامت=FWHM)، خطِ دقیقه یک میله‌ی عمودی (زاویه و پهنا)، پرتو یک میله‌ی عمودیِ باریک‌شونده. چیزی که پیدا شد: ۱۲ پرتو هر ۳۰° (نه ۸ تا)، دو ردیف ۶۰تایی خط دقیقه."),
+             en=("Rings, ticks, rays", "In polar space everything becomes axis-aligned: a ring is a horizontal line (radius = centroid, stroke = FWHM), a tick is a vertical bar (angle, width), a ray is a tapering vertical bar. Found: 12 rays every 30 deg (not 8) and two rows of 60 ticks."),
+             facts=[F("حلقه‌ها (px)", "rings (px)", " · ".join(f"{x['r_px']:.1f}" for x in r)),
+                    F("ضخامت حلقه‌ها (px)", "ring stroke (px)", " · ".join(f"{x['stroke_px']:.2f}" for x in r)),
+                    F("خط دقیقه‌ی داخلی", "inner ticks", f"{prim['tick_rows']['inner']['one_min']['width_px']} / {prim['tick_rows']['inner']['five_min']['width_px']} px wide, r {prim['tick_rows']['inner']['one_min']['r0_px']}–{prim['tick_rows']['inner']['one_min']['r1_px']}"),
+                    F("پرتو", "ray", f"r {prim['rays']['radial_run_px'][0]}–{prim['rays']['radial_run_px'][1]} px, width 6.0 → 2.3 px")]),
+        dict(id="chords", file="s05_lines.py", fig="chords",
+             fa=("وترها", "حلقه‌ها و پرتوها که مخفی شدند، فقط خط‌های بلند می‌مانند. Hough، سپس «قوی‌ترین را پیدا کن، پاکش کن، تکرار کن» و کمترین‌مربعاتِ کل برای دقت زیرپیکسل. نتیجه: شش وتر از حلقه‌ی بیرونی (چهار خط ۲۶٫۶° و دو قطر ۴۵°) که دو تا از آن‌ها در رأسِ ۱۲ به یک مثلث توپُر می‌رسند."),
+             en=("Chords", "With rings and rays masked, only long lines remain. Hough, then 'find the strongest, erase it, repeat', and total least squares for sub-pixel accuracy. Result: six chords of the outer ring (four at 26.6 deg and two diagonals at 45 deg), two of which meet in a solid triangle at 12."),
+             facts=[F("تعداد وتر", "chords", str(len(lines))),
+                    F("زاویه‌ها", "angles", " · ".join(f"{l['angle_deg']:.2f}°" for l in lines)),
+                    F("فاصله از مرکز (واحد)", "distance from centre (units)", " · ".join(f"{abs(l['dist_from_centre_px']) * k:.1f}" for l in lines)),
+                    F("خطای رگرسیون (px)", "fit rms (px)", f"{max(l['rms_px'] for l in lines):.2f} max")]),
+        dict(id="residual", file="s06_residual.py", fig="residual",
+             fa=("باقی‌مانده", "مدل پارامتریک (حلقه، خط، پرتو، وتر) را دوباره روی عکس رسم می‌کنیم و از جوهر کم می‌کنیم. آنچه می‌ماند دقیقاً چیزی است که هنوز توضیح داده نشده: اعداد، برچسب‌ها، آرم، پنجره‌ی تاریخ. ۷۰ تکه‌ی همبند، و شاخصِ «مدل ساختگی نیست»: ۹۱٪ پیکسل‌های مدل واقعاً جوهرند."),
+             en=("Residual", "Re-render the parametric model on the photo and subtract it from the ink. What remains is exactly what is not yet explained: numerals, labels, logo, date window. 70 connected pieces, and a sanity check that the model is not hallucinating: 91 % of model pixels are real ink."),
+             facts=[F("تکه‌ها", "pieces", "70"), F("دقتِ مدل", "model precision", "0.907")]),
+        dict(id="text", file="s07_text.py", fig="text",
+             fa=("اعداد و برچسب‌ها", "قاعده‌ی چرخش اندازه‌گیری شد: برچسب‌های ۲۰ تا ۴۰ و اعداد ۴ تا ۸ وارونه می‌شوند تا خوانا بمانند (همبستگی رقم ۵: ۰٫۷۳–۰٫۸۱ با چرخش، ۰٫۵۲ بی‌چرخش). هر عدد با ۶× ریزنمونه‌برداری راست می‌شود، تکه‌های وابسته نگه داشته می‌شود و با potrace به منحنی بزیه می‌رسد. وترهایی که از عدد رد می‌شوند با آزمون «جوهر در دو سوی خط» پاک می‌شوند."),
+             en=("Numerals and labels", "The rotation rule was measured: labels 20-40 and numerals 4-8 are flipped to stay readable (digit '5' correlates 0.73-0.81 flipped vs 0.52 unflipped). Each item is straightened at 6x, its components kept and traced to Bezier curves with potrace. Chords passing through a numeral are removed by a 'ink on both sides of the line' test."),
+             facts=[F("آیتم‌ها", "items", str(len(text))), F("بازسازی‌شده (پنهان زیر عقربه)", "reconstructed (hidden under hands)", ", ".join(f"{t['kind']} {t['label']}" for t in rec)),
+                    F("فونت", "typeface", "custom — no system font matched (best IoU 0.76)")]),
+        dict(id="details", file="s07_text.py · build", fig="details",
+             fa=("پنجره‌ی تاریخ، آرم، مثلث رأس", "پنجره‌ی تاریخ از پروفایل لبه‌ها اندازه‌گیری شد (۷۲٫۵×۵۵px، لبه‌ی آبی‌روشن، صفحه‌ی خاکستری گرادیانی، ارقام تیره). مثلث رأس بین دو وتر تا لبه‌ی بیرونی حلقه توپُر است."),
+             en=("Date window, logo, apex", "The date window was measured from edge profiles (72.5 x 55 px, pale-blue rim, gradient grey plate, dark digits). The apex triangle is solid between the two chords down to the outer edge of the ring."),
+             facts=[F("پنجره (واحد)", "window (units)", "41.9 × 32.0"), F("رأس مثلث", "apex", "r = 157.2 u")]),
+        dict(id="body", file="s09_body.py", fig="body",
+             fa=("بدنه و بند", "استیلِ صیقلی از وجه‌های تخت ساخته شده که هر کدام تقریباً یک تُن دارند. تن‌ها با k-means روی روشنایی پیدا می‌شوند و هر آستانه یک ناحیه‌ی تو‌در‌تو می‌دهد؛ مرز ناحیه‌ها همان لبه‌ی وجه‌ها و شکاف حلقه‌های بند است. سیلوئت از ایزوخط زیرپیکسل کانال آلفا آمده."),
+             en=("Case and bracelet", "Polished steel is made of flat facets of nearly constant tone. Tones come from k-means on luminance and each threshold gives a nested region; region boundaries ARE the facet edges and link gaps. The silhouette is the sub-pixel iso-line of the alpha channel."),
+             facts=[F("سطح‌های تن", "tone levels", str(len(body["levels"]))), F("حجم مسیرها", "path size", f"{sum(len(l['d']) for l in body['levels']) // 1024} KB"),
+                    F("سیلوئت IoU", "silhouette IoU", str(ver.get("silhouette_iou", "—")))]),
+        dict(id="bezel", file="s10_bezel.py", fig="bezel",
+             fa=("حلقه‌ی شیاردار", "دندانه‌ها دوره‌ای‌اند: FFT زاویه‌ای ۱۲۰ دندانه (گام ۳٫۰۰۰°) می‌دهد. میانه‌ی ۱۲۰ تکه‌ی هم‌ترازشده یک دندانه‌ی دقیق می‌سازد. رنگ هر دندانه جدا ثبت شده تا الگوی براق‌شدنِ عکس با چرخش نور بچرخد."),
+             en=("Fluted bezel", "The teeth are periodic: an angular FFT gives 120 teeth (pitch 3.000 deg). The median of 120 aligned patches gives one exact tooth. Each tooth's colour is stored so the photo's specular pattern can rotate with the light."),
+             facts=[F("دندانه", "teeth", "120"), F("شعاع (px)", "radius (px)", f"{bez['tooth_r_in_px']:.0f}–{bez['tooth_r_out_px']:.0f}"), F("شیار", "groove", f"{bez['groove_px_at_mid']} px"),
+                    F("انحراف از شبکه‌ی ۳° (px)", "deviation from the 3° grid (px)", "1.07 rms")]),
+        dict(id="build", file="s11_build.py", fig="build",
+             fa=("ساخت", "همه‌ی عددها به واحد صفحه (۲۰۰ = شعاع) تبدیل و در assets/boreal-data.js و boreal-body.js نوشته می‌شود. سایت دقیقاً همین داده را می‌کشد؛ همان داده یک SVG ایستا هم می‌سازد."),
+             en=("Build", "Every number is converted to dial units (200 = radius) and written to assets/boreal-data.js and boreal-body.js. The site draws exactly that data; the same data also yields a static SVG."),
+             facts=[F("اندازه‌ی داده", "data size", "≈55 KB + 171 KB")]),
+        dict(id="verify", file="s12_verify.py", fig="verify",
+             fa=("راستی‌آزمایی", "مدل برداری روی شبکه‌ی پیکسلی عکس رسم و با عکس مقایسه می‌شود. خطِ چاپ ~۱px چمفر دارد (کلِ پهنای خط ۲–۴px)؛ بدنه ۹۹٫۹٪ سیلوئت؛ عقربه‌ها ۴px انحراف از اختلاف‌منظرِ عکس (محور عقربه‌ها از مرکز صفحه ۳–۴px جدا بود و در مدل حذف شد)."),
+             en=("Verify", "The vector model is rendered on the photo's pixel grid and compared. Print edges are within ~1 px chamfer (strokes are 2-4 px wide); the body matches 99.9 % of the silhouette; hands differ by ~4 px because the photo has parallax (the hands' axis was 3-4 px off the dial centre; the model removes it)."),
+             facts=[F("سیلوئت IoU", "silhouette IoU", str(ver.get("silhouette_iou", "—"))),
+                    F("جوهر چاپ IoU", "print ink IoU", str(ver.get("dial_ink_iou", "—"))),
+                    F("چمفر لبه‌ها (px)", "edge chamfer (px)", f"{ver.get('dial_edge_chamfer_px', {}).get('photo_to_model', '—')} / {ver.get('dial_edge_chamfer_px', {}).get('model_to_photo', '—')}"),
+                    F("خطای روشنایی فلز", "metal luminance MAE", f"{ver.get('metal_luminance_mae', '—')} / 255"),
+                    F("عقربه‌ها IoU", "hands IoU", str(ver.get("hands_iou", "—")))]),
+    ]
+    return S

@@ -17,7 +17,8 @@
       ['Dial · median', '#05255A', 'میانه‌ی کل صفحه', 'median of the whole dial'],
       ['Dial · lit lobe', '#094782', 'ناحیه‌ی روشنِ زیر نور', 'the lit lobe'],
       ['Dial · outer band', '#063A6E', 'حلقه‌ی بیرونی کنار شیار', 'outer chapter band'],
-      ['Printed lines', '#D3D9E4', 'خطوط و اعداد چاپی', 'printed lines and numerals'] ] },
+      ['Printed lines (core)', '#ECEBEB', 'هسته‌ی خطوط و اعداد چاپی، بدون لبه‌ی نرم‌شده', 'core of lines and numerals, without anti-aliased edges'],
+      ['Outer ticks', '#D9E8F4', 'خط‌های آبی‌روشنِ حلقه‌ی بیرونی', 'pale-blue ticks on the chapter band'] ] },
     { fa: 'فلز', en: 'Metal', items: [
       ['Hands', '#BBBABC', 'عقربه‌ها (میانه)', 'hands (median)'],
       ['Hands · shadow', '#87878B', 'سایه‌ی وجه عقربه', 'hand facet shadow'],
@@ -28,7 +29,7 @@
       ['Case · highlight', '#EDEDEB', 'برق بدنه', 'case highlight'],
       ['Bracelet', '#B8B8B8', 'بند', 'bracelet'] ] },
     { fa: 'سیگنال', en: 'Signal', items: [
-      ['Seconds hand', '#C81A35', 'ثانیه‌شمار', 'seconds hand'] ] },
+      ['Seconds hand', '#D5051F', 'ثانیه‌شمار (هسته‌ی رنگ)', 'seconds hand (core colour)'] ] },
     { fa: 'پشت‌بند باز', en: 'Openwork caseback', items: [
       ['Movement plate', '#A7AEB4', 'صفحه‌ی موتور', 'movement plate'],
       ['Gold gears', '#D9B866', 'چرخ‌دنده‌های طلایی', 'gold wheels'],
@@ -41,7 +42,10 @@
   /* ---------------- i18n ---------------- */
   const T = {
     fa: {
-      nav_light: 'نور', nav_geo: 'هندسه', nav_pal: 'رنگ‌ها', nav_ana: 'کالبد', nav_mov: 'موتور', nav_spec: 'مشخصات',
+      nav_light: 'نور', nav_geo: 'هندسه', nav_pal: 'رنگ‌ها', nav_ana: 'کالبد', nav_mov: 'موتور', nav_spec: 'مشخصات', nav_lab: 'لبه‌یابی',
+      k_lab: '08 — لبه‌یابی', t_lab: 'از عکس تا کد، مرحله به مرحله',
+      p_lab: 'این ساعت با لبه‌یابی روی عکس رسمی بازسازی شده است. هر مرحله را انتخاب کن: چه کاری می‌کند، چه عددی اندازه می‌گیرد، و خروجی‌اش را روی همین ساعتِ برداری ببین. (عکس خام در مخزن نیست؛ فقط کد و خروجی برداری.)',
+      l_tones: 'سطح‌های تن', lab_file: 'فایل', lab_note: 'بازسازی‌شده یعنی بخشی که در عکس زیر عقربه پنهان بود و از روی حروف هم‌خانواده کامل شد؛ اندازه‌گیری نیست.',
       h1: 'آبی‌ای که با نور نفس می‌کشد',
       lead: 'صفحه‌ی آبی sun-brushed، هندسه‌ی قطب‌نما، بدنه و بند استیل صیقلی و یک عقربه‌ی ثانیه‌شمار قرمز.',
       cta: 'ببین چطور ساخته شده',
@@ -50,9 +54,9 @@
       p_light: 'صفحه‌ی ساعت sun-brushed است: خطوط ریز شعاعی دارد و نور روی آن دو لکه‌ی روشن مقابل هم می‌سازد. بسته به زاویه از سرمه‌ای تقریباً سیاه تا آبی کبالتی دیده می‌شود، پس هویتش یک گرادیان است، نه یک HEX.',
       l_angle: 'زاویه‌ی نور', l_perceived: 'آبی دیده‌شده، سمت چپِ صفحه',
       k_geo: '02 — هندسه', t_geo: 'هندسه‌ی قطب‌نما روی صفحه',
-      p_geo: 'روی صفحه فقط خطوط نازک سفید-آبی است: سه حلقه‌ی هم‌مرکز، یک ستاره‌ی شش‌پر (دو مثلث)، هشت پرتو دور مرکز و دو ردیف عدد. لایه‌ها را روشن و خاموش کن.',
+      p_geo: 'این هندسه از لبه‌یابی روی عکس رسمی بیرون آمده، نه از حدس: سه حلقه‌ی هم‌مرکز، شش وتر روی حلقه‌ی بیرونی (چهار خط با شیب ۲۶٫۶° و دو قطر ۴۵°) که در رأسِ بالا به یک مثلث توپُر می‌رسند، دوازده پرتو (نه هشت!) دور مرکز، دو ردیف خطِ دقیقه و دو ردیف عدد. لایه‌ها را روشن و خاموش کن.',
       geo_note: 'شعاع‌ها نسبت به شعاع صفحه (R) از روی عکس رسمی اندازه‌گیری شده‌اند.',
-      tg_rings: 'سه حلقه‌ی هم‌مرکز', tg_hex: 'ستاره‌ی شش‌پر', tg_rays: 'هشت پرتو', tg_hours: 'اعداد ساعت', tg_track: 'ردیف دقیقه', tg_hands: 'عقربه‌ها',
+      tg_rings: 'سه حلقه‌ی هم‌مرکز', tg_chords: 'شش وتر و مثلث رأس', tg_rays: 'دوازده پرتو', tg_hours: 'اعداد ساعت', tg_track: 'ردیف دقیقه (۲×۶۰ خط + برچسب)', tg_brand: 'آرم، AUTOMATIC و تقویم', tg_hands: 'عقربه‌ها',
       k_pal: '03 — رنگ‌ها', t_pal: 'رنگ‌هایی که از عکس رسمی اندازه گرفتم',
       p_pal: 'این HEXها میانه‌ی پیکسل‌های همان ناحیه از عکس محصول‌اند، نه حدس. ترکیب سطح ساعت: حدود ۶۴٪ فلز، ۳۵٪ آبی و کمتر از ۱٪ قرمز؛ قرمز فقط خود عقربه‌ی ثانیه‌شمار است.',
       copyhint: 'برای کپی HEX کلیک کن', copied: 'کپی شد',
@@ -84,7 +88,10 @@
       ]
     },
     en: {
-      nav_light: 'Light', nav_geo: 'Geometry', nav_pal: 'Colors', nav_ana: 'Anatomy', nav_mov: 'Movement', nav_spec: 'Specs',
+      nav_light: 'Light', nav_geo: 'Geometry', nav_pal: 'Colors', nav_ana: 'Anatomy', nav_mov: 'Movement', nav_spec: 'Specs', nav_lab: 'Edge lab',
+      k_lab: '08 — Edge lab', t_lab: 'From photo to code, stage by stage',
+      p_lab: 'This watch was rebuilt by edge detection on the official photo. Pick a stage: what it does, which numbers it measures, and its output drawn on this vector watch. (The raw photo is not in the repository, only the code and the vector output.)',
+      l_tones: 'Tone levels', lab_file: 'File', lab_note: 'Reconstructed means a part that was hidden under a hand in the photo and completed from sibling glyphs; it is not a measurement.',
       h1: 'A blue that breathes with the light',
       lead: 'A sun-brushed blue dial, compass geometry, a polished steel case and bracelet, and one red seconds hand.',
       cta: 'See how it is built',
@@ -93,9 +100,9 @@
       p_light: 'The dial is sun-brushed: fine radial lines, and the light makes two bright lobes facing each other. Depending on the angle it reads from near-black navy to cobalt, so the identity is a gradient, not a HEX.',
       l_angle: 'Light angle', l_perceived: 'Perceived blue, left of the dial',
       k_geo: '02 — Geometry', t_geo: 'The compass geometry on the dial',
-      p_geo: 'The dial carries only thin white-blue lines: three concentric rings, a six-point star (two triangles), eight rays around the centre and two rows of numerals. Toggle the layers.',
+      p_geo: 'This geometry comes from edge detection on the official photo, not from guesses: three concentric rings, six chords of the outer ring (four at 26.6 deg, two diagonals at 45 deg) meeting in a solid triangle at the top, twelve rays (not eight) around the centre, two rows of minute ticks and two rows of numerals. Toggle the layers.',
       geo_note: 'Radii are relative to the dial radius (R) and measured from the official photo.',
-      tg_rings: 'Three concentric rings', tg_hex: 'Six-point star', tg_rays: 'Eight rays', tg_hours: 'Hour numerals', tg_track: 'Minute track', tg_hands: 'Hands',
+      tg_rings: 'Three concentric rings', tg_chords: 'Six chords + apex triangle', tg_rays: 'Twelve rays', tg_hours: 'Hour numerals', tg_track: 'Minute track (2 x 60 ticks + labels)', tg_brand: 'Logo, AUTOMATIC, date', tg_hands: 'Hands',
       k_pal: '03 — Colors', t_pal: 'Colors measured from the official photo',
       p_pal: 'These HEX values are the median pixel of each region of the product photo, not guesses. Composition of the watch surface: about 64% metal, 35% blue and under 1% red; the red is only the seconds hand.',
       copyhint: 'Click to copy a HEX', copied: 'Copied',
@@ -128,6 +135,7 @@
     }
   };
   let lang = 'fa';
+  let labReady = false;
   const toastEl = $('#toast');
   let toastTimer;
   const toast = msg => { toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('on'), 1600); };
@@ -147,7 +155,7 @@
       `<div><dt>${k}</dt><dd>${v}</dd><span class="src ${s === 'official' ? 'official' : ''}">${T[lang].src[s]}</span></div>`).join('');
   }
   function renderToggles() {
-    const defs = [['rings', '0.22R · 0.53R · 0.73R'], ['hex', '0.77R'], ['rays', '0.24R – 0.36R'], ['hours', '0.63R'], ['track', '0.84R – 0.98R'], ['hands', '10:09:36']];
+    const defs = [['rings', '0.219R · 0.518R · 0.716R'], ['chords', '26.6° ×4 · 45° ×2'], ['rays', '12 × 30° · 0.21R–0.33R'], ['hours', '0.62R'], ['track', '0.93R–0.98R · 0.71R–0.78R'], ['brand', 'swatch · AUTOMATIC · 28'], ['hands', '10:10:00']];
     const had = {};
     $$('#toggles input').forEach(i => had[i.dataset.k] = i.checked);
     $('#toggles').innerHTML = defs.map(([k, m]) => `<li><label data-k="${k}"><input type="checkbox" data-k="${k}" ${had[k] === false ? '' : 'checked'}><b>${T[lang]['tg_' + k]}</b><em>${m}</em></label></li>`).join('');
@@ -167,81 +175,159 @@
     $$('[data-i18n]').forEach(e => { const v = T[l][e.dataset.i18n]; if (v) e.textContent = v; });
     $('[data-lang-label]').textContent = l === 'fa' ? 'EN' : 'FA';
     document.title = T[l].title;
-    renderPalette(); renderSpecs(); renderToggles();
+    renderPalette(); renderSpecs(); renderToggles(); if (labReady) renderLab();
     try { localStorage.setItem('boreal-lang', l); } catch (_) { /* storage may be blocked */ }
   }
   $('#lang').addEventListener('click', () => setLang(lang === 'fa' ? 'en' : 'fa'));
 
-  /* ---------------- dial geometry (R = 200 units; ratios measured from the photo) ---------------- */
-  const LINE = '#D3D9E4';
-  const G = { inner: 44.6, mid: 105.4, outer: 146, hexR: 154, hourR: 126, minR: 160, rayA: 48, rayB: 72 };
-  const ringsMk = (cls = '') => [G.inner, G.mid, G.outer].map(r => `<circle class="${cls}" r="${r}" fill="none" stroke="${LINE}" stroke-width="1.1" stroke-opacity=".9"/>`).join('');
-  const hexMk = (cls = '') => [[0, 120, 240], [60, 180, 300]].map(t => `<polygon class="${cls}" points="${t.map(a => P(G.hexR, a).join(',')).join(' ')}" fill="none" stroke="${LINE}" stroke-width="1" stroke-opacity=".8" stroke-linejoin="round"/>`).join('');
-  const raysMk = (cls = '') => Array.from({ length: 8 }, (_, k) => { const a = k * 45, [x1, y1] = P(G.rayA, a), [x2, y2] = P(G.rayB, a); return `<line class="${cls}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${LINE}" stroke-width="1.7" stroke-linecap="round"/>`; }).join('');
-  const hoursMk = () => {
-    let s = '';
-    for (let h = 1; h <= 12; h++) {
-      if (h === 3) continue;
-      const a = h * 30, [x, y] = P(G.hourR, a), rot = (h >= 4 && h <= 8) ? a - 180 : a;
-      s += `<text class="d-num" transform="translate(${x} ${y}) rotate(${rot})">${h}</text>`;
-    }
-    return s;
+  /* ---------------- the watch, rebuilt from the extracted data (assets/boreal-data.js + boreal-body.js) ----------------
+     Everything below is drawn from numbers the edge-detection pipeline measured on the official photo (see PIPELINE.md).
+     Dial units: origin = dial centre, 200 = dial radius, y down, clock angle 0 = 12 o'clock. */
+  const B = window.BOREAL, DL = B.dial, HD = B.hands, BZ = B.bezel, SH = B.shading, BODY = B.body;
+  const INK = DL.ink;
+  const POSE = { hour: HD.hour.angle_photo, minute: HD.minute.angle_photo, second: 0.23 };
+  const hexRgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const rgbHex = a => '#' + a.map(v => clamp(Math.round(v), 0, 255).toString(16).padStart(2, '0')).join('').toUpperCase();
+  const UB = BODY.unit_bbox, PAD = 6;
+  const VX = UB[0] - PAD, VW = UB[2] - UB[0] + 2 * PAD;        // viewBox x / width of the whole watch
+  const BODY_SCALE = (1 / B.unit.px_per_unit) / BODY.grid_per_px;
+  const wedge = (r0, r1, a0, a1) => {
+    const [x0, y0] = P(r0, a0), [x1, y1] = P(r1, a0), [x2, y2] = P(r1, a1), [x3, y3] = P(r0, a1);
+    return `M${x0} ${y0}L${x1} ${y1}A${r1} ${r1} 0 0 1 ${x2} ${y2}L${x3} ${y3}A${r0} ${r0} 0 0 0 ${x0} ${y0}Z`;
   };
-  const trackMk = (cls = '') => {
-    let s = `<circle r="187" fill="none" stroke="#2A74C8" stroke-opacity=".13" stroke-width="26"/>`;
-    for (let i = 0; i < 60; i++) {
-      const big = i % 5 === 0, a = i * 6, [x1, y1] = P(196, a), [x2, y2] = P(big ? 177 : 188, a);
-      s += `<line class="${cls}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${big ? '#CFE0F6' : LINE}" stroke-width="${big ? 3.4 : 1.1}" stroke-opacity="${big ? 1 : .85}"/>`;
-    }
-    for (let m = 0; m < 60; m += 5) {
-      const a = m * 6, [x, y] = P(G.minR, a), lower = m >= 20 && m <= 40, rot = lower ? a - 180 : a;
-      s += `<text class="d-min" transform="translate(${x} ${y}) rotate(${rot})">${m === 0 ? '60' : String(m).padStart(2, '0')}</text>`;
-    }
-    return s;
+
+  /* --- printed layers --- */
+  const ringsMk = (cls = '') => DL.rings.map(r => `<circle class="${cls}" r="${r.r}" fill="none" stroke="${INK}" stroke-width="${r.w}"/>`).join('');
+  const ticksMk = (cls = '') => Object.values(DL.tick_rows).map(row => Array.from({ length: 60 }, (_, k) => {
+    const c = k % 5 ? row.one : row.five, a = 6 * k + row.offset_deg, [x0, y0] = P(c.r0, a), [x1, y1] = P(c.r1, a);
+    return `<line class="${cls}" x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="${k % 5 ? row.colour_one : row.colour}" stroke-width="${c.w}"/>`;
+  }).join('')).join('');
+  const raysMk = () => {
+    const R = DL.rays;
+    return R.angles.map(a => {
+      const c = cosD(a), s = sinD(a), q = (r, w, sd) => { const [x, y] = P(r, a); return `${f2(x + sd * w / 2 * c)} ${f2(y + sd * w / 2 * s)}`; };
+      return `<path d="M${q(R.r0, R.w0, -1)}L${q(R.r1, R.w1, -1)}L${q(R.r1, R.w1, 1)}L${q(R.r0, R.w0, 1)}Z" fill="${INK}"/>`;
+    }).join('');
   };
-  const handsMk = id => `
-    <g class="w-shadow">
-      <g class="h-h"><path d="M-8 24 L-7.5 -20 L-5 -118 L0 -132 L5 -118 L7.5 -20 L8 24Z" fill="url(#hl${id})" stroke="#fff" stroke-opacity=".5" stroke-width=".5"/></g>
-      <g class="h-m"><path d="M-6.5 26 L-6 -20 L-4 -166 L0 -178 L4 -166 L6 -20 L6.5 26Z" fill="url(#hl${id})" stroke="#fff" stroke-opacity=".5" stroke-width=".5"/></g>
-      <circle r="13" fill="url(#hl${id})" stroke="#fff" stroke-opacity=".5" stroke-width=".5"/>
-      <g class="h-s"><line y1="70" y2="-196" stroke="#C81A35" stroke-width="3.2"/><circle r="10" fill="#C81A35"/><circle r="3.4" fill="#4A0A17"/></g>
-    </g>`;
-  const handDefs = id => `<linearGradient id="hl${id}" x1="0" x2="1"><stop offset="0" stop-color="#EDEDEF"/><stop offset=".5" stop-color="#C9C9CC"/><stop offset=".5" stop-color="#9A9A9F"/><stop offset="1" stop-color="#787880"/></linearGradient>`;
-  const faceMk = (id, { hands = true } = {}) => `<defs>${handDefs(id)}</defs>
-    ${trackMk()}${ringsMk()}${hexMk()}${raysMk()}${hoursMk()}
-    <rect x="119" y="-16.5" width="42" height="33" rx="3" fill="#C9CDD3" stroke="#9AA0A8" stroke-width=".8"/>
-    <rect x="121.5" y="-14" width="37" height="28" rx="2" fill="#fff"/><text class="d-date date-txt" x="140" y="1">${new Date().getDate()}</text>
-    <text class="d-brand" y="-84">swatch</text><text class="d-swiss" y="-70">SWISS</text><text class="d-auto" y="92">AUTOMATIC</text>
+  const f2 = v => +(+v).toFixed(2);
+  const chordsMk = (cls = '') => DL.chords.map(c => `<line class="${cls}" x1="${c.a[0]}" y1="${c.a[1]}" x2="${c.b[0]}" y2="${c.b[1]}" stroke="${INK}" stroke-width="${c.w}"/>`).join('')
+    + (DL.apex ? `<path d="M${DL.apex.points.map(p => p.join(' ')).join('L')}Z" fill="${INK}"/>` : '');
+  const textMk = kinds => DL.text.filter(t => kinds.includes(t.kind)).map(t =>
+    `<path class="glyph" d="${t.d}" fill="${t.fill}" fill-rule="evenodd" transform="translate(${t.x} ${t.y}) rotate(${t.rot})"/>`).join('');
+  const dateMk = () => {
+    const W = DL.date, r = W.rim;
+    return `<g class="date"><rect x="${f2(W.x + r / 2)}" y="${f2(W.y + r / 2)}" width="${f2(W.w - r)}" height="${f2(W.h - r)}" rx="${W.radius}" fill="url(#datePlate)" stroke="${W.rim_colour}" stroke-width="${r}"/>
+      <rect x="${f2(W.x + r)}" y="${f2(W.y + r)}" width="${f2(W.w - 2 * r)}" height="${f2(W.h - 2 * r)}" rx="${f2(W.radius * .55)}" fill="none" stroke="${W.edge_colour}" stroke-width=".7" stroke-opacity=".8"/>
+      <text class="date-txt" style="direction:ltr;unicode-bidi:bidi-override" y="${f2(W.digit_cy + W.digit_h / 2)}" font-family="Poppins,Arial,sans-serif" font-weight="600" font-size="${f2(W.digit_h / .71)}" fill="${W.digit_colour}" lengthAdjust="spacingAndGlyphs"></text></g>`;
+  };
+  const dateDefs = () => { const W = DL.date; return `<radialGradient id="datePlate" cx=".5" cy=".5" r=".75"><stop offset="0" stop-color="${W.plate_centre}"/><stop offset="1" stop-color="${W.plate_edge}"/></radialGradient>`; };
+  const setDate = (el, day) => {
+    const W = DL.date, s = String(day), len = s.length * W.digit_w + (s.length - 1) * W.digit_gap;
+    el.textContent = s; el.setAttribute('x', f2(W.digit_cx - len / 2)); el.setAttribute('textLength', f2(len));
+  };
+
+  /* --- hands: two facets per hand (left / right of the axis) with the measured lengthwise colour ramps --- */
+  const FM = HD.facet_model;
+  const facetF = ang => FM.m + FM.a * cosD(ang - FM.theta0);
+  const facetFactor = (hand, ang, side) => {
+    const meas = HD[hand].angle_photo;
+    return clamp(side === 'l' ? facetF(ang) / facetF(meas) : facetF(-ang) / facetF(-meas), .55, 1.4);
+  };
+  const rampStops = (h, cols) => {
+    const y1 = -h.length, y2 = h.tail;
+    return h.stations.map((s, i) => `<stop offset="${f2((-s - y1) / (y2 - y1) * 100)}%" stop-color="${cols[i]}"/>`).join('');
+  };
+  const handDefs = id => ['hour', 'minute'].map(k => {
+    const h = HD[k], y1 = -h.length, y2 = h.tail;
+    return ['l', 'r'].map(s => `<linearGradient id="h${s}${k[0]}${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${y1}" x2="0" y2="${y2}">${rampStops(h, s === 'l' ? h.left : h.right)}</linearGradient>`).join('');
+  }).join('') + `<radialGradient id="hubpad${id}"><stop offset="0" stop-color="#9B9899"/><stop offset=".6" stop-color="#6E6A6D"/><stop offset="1" stop-color="#3A383A"/></radialGradient>`;
+  const handMk = (k, id) => {
+    const h = HD[k], [tl, tr, br, bl] = h.polygon;
+    return `<g class="h-${k[0]}" data-hand="${k}"><path class="fl" d="M${tl[0]} ${tl[1]}L0 ${tl[1]}L0 ${bl[1]}L${bl[0]} ${bl[1]}Z" fill="url(#hl${k[0]}${id})"/>
+      <path class="fr" d="M0 ${tr[1]}L${tr[0]} ${tr[1]}L${br[0]} ${br[1]}L0 ${br[1]}Z" fill="url(#hr${k[0]}${id})"/></g>`;
+  };
+  const handsMk = id => {
+    const S = HD.second, H = HD.hub;
+    return `<g class="w-shadow">${handMk('hour', id)}${handMk('minute', id)}
+      <circle r="${H.pad_r}" fill="url(#hubpad${id})"/>
+      <g class="h-s"><path d="M${-S.w / 2} ${-S.tip}H${S.w / 2}V${S.tail}H${-S.w / 2}Z" fill="${S.colour}"/></g>
+      <circle r="${f2((H.ring_r[0] + H.ring_r[1]) / 2)}" fill="none" stroke="${H.ring_colour}" stroke-width="${f2(H.ring_r[1] - H.ring_r[0])}"/>
+      <circle r="${H.screw_r}" fill="${H.screw_colour}"/><circle r="1.1" fill="#3A2A2C"/></g>`;
+  };
+  const setFacets = (w, k, ang) => {
+    const el = $(`.h-${k[0]}`, w.el); if (!el) return;
+    for (const s of ['l', 'r']) {
+      const q = Math.round(facetFactor(k, ang, s) * 50) / 50, key = k + s;
+      if (w.fq[key] !== q) { w.fq[key] = q; $(s === 'l' ? '.fl' : '.fr', el).style.filter = `brightness(${q})`; }
+    }
+  };
+  const poseHands = root => {
+    $('.h-h', root).setAttribute('transform', `rotate(${POSE.hour})`);
+    $('.h-m', root).setAttribute('transform', `rotate(${POSE.minute})`);
+    $('.h-s', root).setAttribute('transform', `rotate(${POSE.second})`);
+  };
+
+  /* --- the face (everything printed on the dial) --- */
+  const faceMk = (id, { hands = true } = {}) => `<defs>${dateDefs()}${handDefs(id)}</defs>
+    <g class="p-track">${ticksMk()}${textMk(['min'])}</g><g class="p-rings">${ringsMk()}</g><g class="p-chords">${chordsMk()}</g><g class="p-rays">${raysMk()}</g>
+    <g class="p-hours">${textMk(['hour'])}</g><g class="p-brand">${textMk(['logo', 'automatic'])}${dateMk()}</g>
     ${hands ? handsMk(id) : ''}`;
 
-  /* ---------------- case, bracelet and caseback (SVG, metal gradients) ---------------- */
-  function caseInner(id, { L, crownLeft = false }) {
-    let links = '';
-    for (const [x, w, y0] of [[-25, 50, 148], [-75, 48, 128], [27, 48, 128]]) {
-      for (let y = y0; y < L; y += 40) {
-        for (const s of [1, -1]) {
-          const yy = s > 0 ? y : -y - 38;
-          links += `<rect x="${x}" y="${yy}" width="${w}" height="38" rx="3" fill="url(#lg${id})" stroke="#fff" stroke-opacity=".75" stroke-width=".8"/>`
-            + `<rect x="${x + 2}" y="${s > 0 ? yy + 1.5 : yy + 34.5}" width="${w - 4}" height="2" fill="#fff" fill-opacity=".7"/>`
-            + `<rect x="${x + 2}" y="${s > 0 ? yy + 34.5 : yy + 1.5}" width="${w - 4}" height="2" fill="#000" fill-opacity=".18"/>`;
-        }
-      }
+  /* --- dial background: measured two-lobe shading + brushed texture --- */
+  const dialBg = (() => {
+    const st = SH.main.map((c, i) => `${c} ${i * SH.step_deg}deg`).concat(`${SH.main[0]} 360deg`).join(',');
+    return `var(--brush, none), conic-gradient(from calc(var(--la, 40deg) - 40deg) at 50% 50%, ${st})`;
+  })();
+  const chapterBg = (() => {
+    const st = SH.outer.map((c, i) => `${c} ${i * SH.step_deg}deg`).concat(`${SH.outer[0]} 360deg`).join(',');
+    return `conic-gradient(from calc(var(--la, 40deg) - 40deg) at 50% 50%, ${st})`;
+  })();
+  // sun-brush: fine radial lines (correlation ~0.55 deg, luminance sigma ~4/255) generated once, seeded so every load is identical
+  (() => {
+    const N = 1024, cv = document.createElement('canvas'); cv.width = cv.height = N;
+    const g = cv.getContext('2d'); if (!g) return;
+    let s = 0x9E3779B9;
+    const rnd = () => { s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+    const steps = 2880, amp = SH.brush.amplitude / 255, sm = [];
+    let v = 0; for (let i = 0; i < steps + 8; i++) { v = v * .62 + (rnd() - .5) * 1.6; sm.push(v); }
+    g.translate(N / 2, N / 2);
+    for (let i = 0; i < steps; i++) {
+      const a0 = i * 2 * Math.PI / steps, a1 = (i + 1.2) * 2 * Math.PI / steps, val = sm[i] * 2.1 * amp;
+      g.fillStyle = val > 0 ? `rgba(255,255,255,${Math.min(.25, val * 2.6)})` : `rgba(0,0,0,${Math.min(.3, -val * 2.6)})`;
+      g.beginPath(); g.moveTo(0, 0); g.arc(0, 0, N * .72, a0 - Math.PI / 2, a1 - Math.PI / 2); g.closePath(); g.fill();
     }
-    const stops = [[0, '#F4F5F6'], [.18, '#C9CBCD'], [.34, '#EEEFF0'], [.5, '#A8AAAD'], [.66, '#E6E7E8'], [.84, '#B6B8BB'], [1, '#F1F2F3']].map(([o, c]) => `<stop offset="${o}" stop-color="${c}"/>`).join('');
-    const ridges = Array.from({ length: 5 }, (_, i) => `M${137 + i * 3} -14V14`).join('');
-    return `<defs>
-      <linearGradient id="cg${id}" class="cg" gradientUnits="userSpaceOnUse" x1="-134" y1="-134" x2="134" y2="134">${stops}</linearGradient>
-      <linearGradient id="cf${id}" class="cg" gradientUnits="userSpaceOnUse" x1="-90" y1="-150" x2="90" y2="150"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".4" stop-color="#D9DBDD"/><stop offset=".7" stop-color="#F6F7F8"/><stop offset="1" stop-color="#BFC1C4"/></linearGradient>
-      <linearGradient id="lg${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFF0F1"/><stop offset=".45" stop-color="#CBCCCE"/><stop offset=".9" stop-color="#A9ABAE"/><stop offset="1" stop-color="#D6D7D9"/></linearGradient>
-      <linearGradient id="cr${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6E7E9"/><stop offset=".5" stop-color="#9A9C9F"/><stop offset="1" stop-color="#D5D6D8"/></linearGradient></defs>
-      ${links}
-      <path d="M-80 -152 L80 -152 L97 -92 A134 134 0 0 1 97 92 L80 152 L-80 152 L-97 92 A134 134 0 0 1 -97 -92 Z" fill="url(#cg${id})" stroke="#5E6063" stroke-width="1"/>
-      <path d="M-64 -104 L-56 -146 L56 -146 L64 -104 Z" fill="url(#cf${id})" stroke="#fff" stroke-opacity=".7" stroke-width=".8"/>
-      <path d="M-64 104 L-56 146 L56 146 L64 104 Z" fill="url(#cf${id})" stroke="#fff" stroke-opacity=".7" stroke-width=".8"/>
-      <circle r="124" fill="#2E3032" fill-opacity=".6"/><circle r="121.5" fill="none" stroke="#fff" stroke-opacity=".75"/>
-      <g transform="${crownLeft ? 'scale(-1 1)' : ''}"><rect x="132" y="-15" width="17" height="30" rx="3" fill="url(#cr${id})" stroke="#6A6C6F" stroke-width=".8"/><path d="${ridges}" stroke="#000" stroke-opacity=".3" stroke-width="1"/></g>`;
-  }
-  const caseSvg = (id, { E, L, open = false }) => `<svg class="w-svg${open ? ' open' : ''}" viewBox="-150 ${-E} 300 ${2 * E}" aria-hidden="true">${caseInner(id, { L })}</svg>`;
+    try { document.documentElement.style.setProperty('--brush', `url(${cv.toDataURL('image/png')}) center / 100% 100%`); } catch (_) { /* canvas may be blocked */ }
+    document.documentElement.style.setProperty('--dial-bg', dialBg);
+    document.documentElement.style.setProperty('--chapter-bg', chapterBg);
+  })();
+
+  /* --- bezel (120 teeth) and body (traced case, lugs, crown, bracelet) --- */
+  const bezelMk = id => {
+    const n = BZ.inner_ring_colours.length, step = 360 / n;
+    let s = `<g class="bz">`;
+    s += BZ.inner_ring_colours.map((c, i) => `<path d="${wedge(BZ.inner_ring[0], BZ.inner_ring[1], i * step - .2, (i + 1) * step + .2)}" fill="${c}"/>`).join('');
+    s += `<circle r="${f2((BZ.r_in + BZ.r_out) / 2)}" fill="none" stroke="${BZ.groove_colour}" stroke-width="${f2(BZ.r_out - BZ.r_in + 2)}"/><g class="teeth">`;
+    const pitch = 360 / BZ.count, c = BZ.corner, hg = Math.asin(BZ.groove_w / 2 / ((BZ.r_in + BZ.r_out) / 2)) * 180 / Math.PI, ce = c / BZ.r_out * 180 / Math.PI;
+    for (let i = 0; i < BZ.count; i++) {
+      const a0 = BZ.first_groove_deg + pitch * i + hg + ce, a1 = BZ.first_groove_deg + pitch * (i + 1) - hg - ce, col = BZ.tooth_colours[i];
+      s += `<path data-i="${i}" d="${wedge(BZ.r_in + c, BZ.r_out - c, a0, a1)}" fill="${col}" stroke="${col}" stroke-width="${f2(2 * c)}" stroke-linejoin="round"/>`;
+    }
+    return s + '</g></g>';
+  };
+  const updateBezel = (root, shift) => {
+    const t = $$('.teeth path', root); if (!t.length) return;
+    const n = t.length;
+    t.forEach((p, i) => { const col = BZ.tooth_colours[(((i - shift) % n) + n) % n]; p.setAttribute('fill', col); p.setAttribute('stroke', col); });
+  };
+  const bodyPaths = (flip = false) => `<g transform="${flip ? 'scale(-1 1) ' : ''}scale(${f2(BODY_SCALE * 1e4) / 1e4})" fill-rule="evenodd">${BODY.levels.map(l => `<path d="${l.d}" fill="${l.fill}"/>`).join('')}</g>`;
+  const bodyInner = (id, { flip = false, bezel = true } = {}) => `<defs>
+      <clipPath id="sil${id}"><path transform="${flip ? 'scale(-1 1) ' : ''}scale(${f2(BODY_SCALE * 1e4) / 1e4})" d="${BODY.levels[0].d}"/></clipPath>
+      <linearGradient id="gl${id}" class="cg" gradientUnits="userSpaceOnUse" x1="-260" y1="-260" x2="260" y2="260">
+        <stop offset="0" stop-color="#fff" stop-opacity=".62"/><stop offset=".38" stop-color="#fff" stop-opacity="0"/><stop offset=".62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient></defs>
+    ${bodyPaths(flip)}<circle r="${BODY.inner_radius_units + .6}" fill="#1E1E1F"/>
+    <g clip-path="url(#sil${id})"><rect x="-300" y="-520" width="620" height="1040" fill="url(#gl${id})" style="mix-blend-mode:soft-light" opacity=".55"/></g>
+    ${bezel ? bezelMk(id) : ''}`;
+  const caseSvg = (id, { E, open = false }) => `<svg class="w-svg${open ? ' open' : ''}" viewBox="${f2(VX)} ${-E} ${f2(VW)} ${2 * E}" aria-hidden="true">${bodyInner(id)}</svg>`;
 
   function movementMk() {
     let s = `<defs>
@@ -262,30 +348,33 @@
     for (const [x, y] of [[-70, -30], [60, -62], [-52, 66], [86, 8], [14, 84], [-12, -90]]) s += `<circle cx="${x}" cy="${y}" r="3.4" fill="#3B3D3D" stroke="#C9CBCE" stroke-width=".8"/>`;
     return s + '</g>';
   }
-  function caseBackMk() {
-    return `<svg id="caseback" viewBox="-150 -190 300 380" aria-hidden="true">${caseInner('bk', { L: 230, crownLeft: true })}
-      <circle r="119" fill="url(#cf${'bk'})" stroke="#6F7174" stroke-width=".8"/><circle r="107" fill="none" stroke="#7B7D81" stroke-width="3"/>
+  function caseBackMk(E) {
+    // the body seen from behind is the same silhouette mirrored; the round caseback window and movement sit on top (drawn at 1.84x the old size)
+    return `<svg id="caseback" viewBox="${f2(-(UB[2] + PAD))} ${-E} ${f2(VW)} ${2 * E}" aria-hidden="true">${bodyInner('bk', { flip: true, bezel: false })}
+      <g transform="scale(1.84)"><circle r="119" fill="url(#cfbk)" stroke="#6F7174" stroke-width=".8"/><circle r="107" fill="none" stroke="#7B7D81" stroke-width="3"/>
       <path id="bkarc" d="M-113 0 A113 113 0 0 1 113 0" fill="none"/>
       <text font-family="Poppins,sans-serif" font-size="8" font-weight="600" letter-spacing="3" fill="#4A4C4F"><textPath href="#bkarc" startOffset="64%">SWISS</textPath></text>
-      ${movementMk()}</svg>`;
+      ${movementMk()}</g>
+      <defs><linearGradient id="cfbk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".4" stop-color="#D9DBDD"/><stop offset=".7" stop-color="#F6F7F8"/><stop offset="1" stop-color="#BFC1C4"/></linearGradient></defs></svg>`;
   }
 
   /* ---------------- watch instances ---------------- */
   let uid = 0;
   const watches = [];
-  function mountWatch(slot, { E = 190, L = 232, open = false, drag = false, live = true } = {}) {
+  function mountWatch(slot, { E = 380, open = false, drag = false, live = true } = {}) {
     const id = ++uid;
-    slot.innerHTML = `<div class="watch" role="img" aria-label="SISTEM BOREAL YIS401GC" style="--ar:300 / ${2 * E}">
-      ${caseSvg(id, { E, L, open })}<div class="w-bezel"></div>
-      <div class="w-dial"><svg class="w-face" viewBox="-200 -200 400 400" aria-hidden="true">${faceMk(id)}</svg></div><div class="w-crystal"></div></div>`;
+    const dl = f2((-200 - VX) / VW * 100), dw = f2(400 / VW * 100);
+    slot.innerHTML = `<div class="watch" role="img" aria-label="SISTEM BOREAL YIS401GC" style="--ar:${f2(VW)} / ${2 * E}">
+      ${caseSvg(id, { E, open })}
+      <div class="w-dial" style="left:${dl}%;width:${dw}%"><svg class="w-face" viewBox="-200 -200 400 400" aria-hidden="true">${faceMk(id)}</svg></div><div class="w-crystal" style="left:${dl}%;width:${dw}%"></div></div>`;
     const el = slot.firstElementChild;
-    const w = { el, offset: 0, live, h: $('.h-h', el), m: $('.h-m', el), s: $('.h-s', el), date: $('.date-txt', el), grads: $$('.cg', el) };
+    const w = { el, offset: 0, live, h: $('.h-h', el), m: $('.h-m', el), s: $('.h-s', el), date: $('.date-txt', el), grads: $$('.cg', el), fq: {}, shift: null, lastDay: null };
     if (drag) {
       const dial = $('.w-dial', el);
       dial.style.cursor = 'grab';
       const move = e => {
-        const r = el.getBoundingClientRect();
-        const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const r = el.getBoundingClientRect(), dr = dial.getBoundingClientRect();
+        const cx = dr.left + dr.width / 2, cy = dr.top + dr.height / 2;
         let a = Math.atan2(e.clientX - cx, -(e.clientY - cy)) * 180 / Math.PI;
         if (a < 0) a += 360;
         const d = new Date(Date.now() + w.offset);
@@ -306,37 +395,51 @@
     const d = new Date(ms);
     const s = reduce ? d.getSeconds() : d.getSeconds() + d.getMilliseconds() / 1000;
     const m = d.getMinutes() + s / 60, h = (d.getHours() % 12) + m / 60;
+    // the photo's hands are at 10:09; their drawn pose is the measured one, the clock rotates them from that reference
     w.s.setAttribute('transform', `rotate(${(s * 6).toFixed(2)})`);
     w.m.setAttribute('transform', `rotate(${(m * 6).toFixed(2)})`);
     w.h.setAttribute('transform', `rotate(${(h * 30).toFixed(2)})`);
-    const dd = String(d.getDate());
-    if (w.date && w.date.textContent !== dd) w.date.textContent = dd;
+    setFacets(w, 'hour', (h * 30) % 360); setFacets(w, 'minute', (m * 6) % 360);
+    const dd = d.getDate();
+    if (w.date && w.lastDay !== dd) { w.lastDay = dd; setDate(w.date, dd); }
   }
-  const setMetalLight = (w, deg) => w.grads.forEach(g => g.setAttribute('gradientTransform', `rotate(${deg.toFixed(1)})`));
+  const setMetalLight = (w, deg) => {
+    w.grads.forEach(g => g.setAttribute('gradientTransform', `rotate(${deg.toFixed(1)})`));
+    const sh = Math.round((deg - 40) / 3);
+    if (sh !== w.shift) { w.shift = sh; updateBezel(w.el, sh); }
+  };
 
   const hero = $('#hero');
-  const heroW = mountWatch($('#watch-hero'), { E: 260, L: 480, open: true, drag: true });
-  const lightW = mountWatch($('#watch-light'), { E: 190 });
-  mountWatch($('#watch-flip'), { E: 190 });
+  const heroW = mountWatch($('#watch-hero'), { E: 470, open: true, drag: true });
+  const lightW = mountWatch($('#watch-light'), { E: 380 });
+  mountWatch($('#watch-flip'), { E: 380 });
   { const el = $('.watch', $('#watch-flip')); el.style.setProperty('--la', '40deg'); }
-  $('#caseback').outerHTML = caseBackMk();
+  $('#caseback').outerHTML = caseBackMk(380);
 
   /* ---------------- hero background: the dial geometry, enlarged ---------------- */
-  $('#hero-lines').innerHTML = `<g transform="scale(2)" stroke-opacity=".5" fill="none">${ringsMk()}${hexMk()}${raysMk()}</g>`;
+  $('#hero-lines').innerHTML = `<g transform="scale(2)" stroke-opacity=".5" fill-opacity=".5" fill="none">${ringsMk()}${chordsMk()}${raysMk()}</g>`;
 
   /* ---------------- exploded anatomy layers ---------------- */
-  $('#ex-dial').innerHTML = `<svg viewBox="-200 -200 400 400">${faceMk('ed', { hands: false })}</svg>`;
-  $('#static-hands').innerHTML = `<svg viewBox="-200 -200 400 400"><defs>${handDefs('sx')}</defs>${handsMk('sx')}</svg>`;
-  { const g = $('#static-hands'); $('.h-h', g).setAttribute('transform', 'rotate(305.3)'); $('.h-m', g).setAttribute('transform', 'rotate(57.6)'); $('.h-s', g).setAttribute('transform', 'rotate(216)'); }
+  (() => {
+    const VB = '-285 -285 570 570';
+    $('.l-case').innerHTML = `<svg viewBox="${VB}">${bodyInner('ec', { bezel: false })}</svg>`;
+    $('.l-bezel').innerHTML = `<svg viewBox="${VB}">${bezelMk('eb')}</svg>`;
+    $('#ex-dial').innerHTML = `<svg viewBox="-200 -200 400 400">${faceMk('ed', { hands: false })}</svg>`;
+    $('#static-hands').innerHTML = `<svg viewBox="-200 -200 400 400"><defs>${handDefs('sx')}</defs>${handsMk('sx')}</svg>`;
+    const g = $('#static-hands'); poseHands(g);
+    setFacets({ el: g, fq: {} }, 'hour', POSE.hour); setFacets({ el: g, fq: {} }, 'minute', POSE.minute);
+    setDate($('.date-txt', $('#ex-dial')), 28);
+  })();
 
   /* ---------------- blueprint (geometry lab) ---------------- */
   (() => {
     const bp = $('#blueprint');
     const grp = (k, inner) => `<g class="g" data-k="${k}" style="--len:1200">${inner}</g>`;
-    bp.innerHTML = `<defs>${handDefs('bp')}</defs>`
-      + grp('track', trackMk('draw')) + grp('rings', ringsMk('draw')) + grp('hex', hexMk('draw')) + grp('rays', raysMk('draw')) + grp('hours', hoursMk())
-      + grp('hands', handsMk('bp'));
-    $('.h-h', bp).setAttribute('transform', 'rotate(305.3)'); $('.h-m', bp).setAttribute('transform', 'rotate(57.6)'); $('.h-s', bp).setAttribute('transform', 'rotate(216)');
+    bp.innerHTML = `<defs>${dateDefs()}${handDefs('bp')}</defs>`
+      + grp('track', ticksMk('draw') + textMk(['min'])) + grp('rings', ringsMk('draw')) + grp('chords', chordsMk('draw')) + grp('rays', raysMk())
+      + grp('hours', textMk(['hour'])) + grp('brand', textMk(['logo', 'automatic']) + dateMk()) + grp('hands', handsMk('bp'));
+    poseHands(bp); setDate($('.date-txt', bp), 28);
+    setFacets({ el: bp, fq: {} }, 'hour', POSE.hour); setFacets({ el: bp, fq: {} }, 'minute', POSE.minute);
   })();
 
   /* ---------------- light lab ---------------- */
@@ -345,10 +448,10 @@
     const A = p(a), B = p(b);
     return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join('').toUpperCase();
   };
-  // two opposite lobes: brightness on the left of the dial (screen angle 180deg) as the light turns
+  // perceived blue on the left of the dial: sample the MEASURED shading profile (72 samples, 5 deg) at screen angle 270 for the current light angle
   const perceived = la => {
-    const k = (1 + Math.cos(2 * (180 - la) * Math.PI / 180)) / 2;
-    return k < .5 ? mix('#02103D', '#05255A', k * 2) : mix('#05255A', '#094782', (k - .5) * 2);
+    const x = ((((270 - (la - 40)) % 360) + 360) % 360) / SH.step_deg, i = Math.floor(x) % SH.main.length, t = x - Math.floor(x);
+    return mix(SH.main[i], SH.main[(i + 1) % SH.main.length], t);
   };
   const angle = $('#angle');
   const setLight = deg => {
@@ -362,6 +465,7 @@
   setLight(+angle.value);
 
   /* ---------------- compass rose ---------------- */
+  const LINE = '#D3D9E4';
   const rose = $('#rose');
   (() => {
     let s = '<defs><linearGradient id="needleS" x1="0" x2="1"><stop offset="0" stop-color="#87878B"/><stop offset=".5" stop-color="#E7E6EA"/><stop offset="1" stop-color="#87878B"/></linearGradient></defs>';
@@ -382,6 +486,86 @@
   const needle = $('#needle'), bearingOut = $('#bearing');
   let bearing = 0, bearingTarget = 0, lastPointer = -1e9;
 
+
+  /* ---------------- 08 edge lab: every pipeline stage drawn from its own output ---------------- */
+  const LAB = (B.pipeline && B.pipeline.stages) || [];
+  let labI = 0, labWatch = null;
+  const TINT = { ring: '#F4B860', tick: '#7FD6E8', ray: '#F08BB4', chord: '#9BE29A', text: '#FFFFFF', recon: '#FFB36B', hand: '#DADDE3', resid: '#FF7A7A' };
+  const tint = (c, inner) => `<g class="tint" style="--c:${c}">${inner}</g>`;
+  const dim = inner => `<g opacity=".28">${inner}</g>`;
+  const lt = (x, y, t, a = 'start') => `<text class="lab-t" x="${x}" y="${y}" text-anchor="${a}">${t}</text>`;
+  const labSvg = (st, tones) => {
+    const faceBase = ringsMk() + chordsMk() + raysMk() + ticksMk();
+    switch (st.fig) {
+      case 'calibrate': {
+        const R_ = DL.rings.map(r => `<circle r="${r.r}" fill="none" stroke="${TINT.ring}" stroke-width="1.1"/>${lt(r.r + 2, -2, (r.r / 200).toFixed(3) + 'R')}`).join('');
+        return ['-215 -215 430 430', `<g stroke="#fff" stroke-opacity=".5" stroke-width=".4"><path d="M-210 0H210M0 -210V210"/></g>
+          <circle r="200" fill="none" stroke="#fff" stroke-dasharray="3 3" stroke-width=".7"/>${lt(4, -203, 'R = 200 (dial edge)')}
+          <circle r="${BZ.r_in}" fill="none" stroke="#7FD6E8" stroke-width=".6"/><circle r="${BZ.r_out}" fill="none" stroke="#7FD6E8" stroke-width=".6"/>${lt(-BZ.r_in * .72, -BZ.r_in * .72, 'teeth')}
+          <circle r="${DL.chapter_band_inner}" fill="none" stroke="#fff" stroke-opacity=".5" stroke-dasharray="1 2" stroke-width=".6"/>${R_}
+          <circle r="2.2" fill="#FF5A5A"/>${lt(6, 10, 'centre = (' + B.unit.centre_px[0] + ', ' + B.unit.centre_px[1] + ') px')}`];
+      }
+      case 'edges':
+        return ['-240 -240 480 480', `<g class="edgeview">${bezelMk('le')}${faceMk('le')}</g>`];
+      case 'hands': {
+        const a = P(190, POSE.hour), b = P(190, POSE.minute);
+        return ['-215 -215 430 430', `${dim(faceBase)}${handsMk('lh')}
+          <g stroke="#FFB36B" stroke-width=".5" stroke-dasharray="3 2" fill="none"><path d="M0 0L${P(205, POSE.hour).join(' ')}M0 0L${P(205, POSE.minute).join(' ')}M0 0V-205"/></g>
+          ${lt(a[0] - 34, a[1], POSE.hour.toFixed(2) + '°')}${lt(b[0] + 4, b[1], POSE.minute.toFixed(2) + '°')}`];
+      }
+      case 'primitives':
+        return ['-215 -215 430 430', tint(TINT.ring, ringsMk()) + tint(TINT.tick, ticksMk()) + tint(TINT.ray, raysMk())];
+      case 'chords': {
+        const dots = DL.chords.flatMap(c => [c.a, c.b]).map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="2.1" fill="#FFB36B" stroke="none"/>`).join('');
+        return ['-215 -215 430 430', dim(ringsMk()) + tint(TINT.chord, chordsMk()) + dots];
+      }
+      case 'residual':
+        return ['-215 -215 430 430', dim(faceBase) + `<g style="--c:${TINT.resid}">${DL.text.map(t => `<path d="${t.d}" fill="${TINT.resid}" fill-rule="evenodd" transform="translate(${t.x} ${t.y}) rotate(${t.rot})"/>`).join('')}</g>${dateMk()}`];
+      case 'text': {
+        const mk = recon => DL.text.filter(t => !!t.reconstructed === recon).map(t => `<path d="${t.d}" fill="${recon ? TINT.recon : '#fff'}" fill-rule="evenodd" transform="translate(${t.x} ${t.y}) rotate(${t.rot})"/>`).join('');
+        return ['-215 -215 430 430', dim(ringsMk() + chordsMk()) + mk(false) + mk(true) + lt(-205, 210, 'white = measured · orange = reconstructed')];
+      }
+      case 'details':
+        return ['-215 -215 430 430', dim(faceBase + textMk(['min', 'hour'])) + textMk(['logo', 'automatic']) + dateMk()];
+      case 'body': {
+        const lv = BODY.levels.slice(0, tones + 1);
+        return [`${f2(VX)} -520 ${f2(VW)} 1040`, `<g transform="scale(${f2(BODY_SCALE * 1e4) / 1e4})" fill-rule="evenodd">${lv.map(l => `<path d="${l.d}" fill="${l.fill}"/>`).join('')}</g>`];
+      }
+      case 'bezel':
+        return ['-240 -240 480 480', `<circle r="${BZ.inner_ring[0]}" fill="#032557"/>${bezelMk('lb')}<circle r="${BODY.inner_radius_units}" fill="none" stroke="#fff" stroke-opacity=".3" stroke-dasharray="2 3"/>`];
+      default:
+        return null;
+    }
+  };
+  function renderLab() {
+    const steps = $('#steps'); if (!steps || !LAB.length) return;
+    steps.innerHTML = LAB.map((st, i) => `<li><button type="button" data-i="${i}" ${i === labI ? 'aria-current="true"' : ''}>${st[lang][0]}</button></li>`).join('');
+    $$('button', steps).forEach(b => b.addEventListener('click', () => { labI = +b.dataset.i; renderLab(); }));
+    const st = LAB[labI], tx = st[lang];
+    $('#lab-info').innerHTML = `<h3>${tx[0]}</h3><p>${tx[1]}</p><dl>${st.facts.map(f => `<div><dt>${f[lang]}</dt><dd>${f.v}</dd></div>`).join('')}</dl>
+      <div class="file">${T[lang].lab_file}: pipeline/${st.file}</div><p class="lab-note">${T[lang].lab_note}</p>`;
+    const fig = $('#lab-fig'), tones = +$('#lab-slider').value;
+    $('#lab-slider-wrap').hidden = st.fig !== 'body';
+    const out = labSvg(st, tones);
+    const holder = fig.parentElement;
+    if (!out) {                                   // "build" / "verify": show the live watch itself
+      fig.style.display = 'none';
+      if (!labWatch) { const slot = document.createElement('div'); slot.className = 'watch-slot'; slot.style.width = 'min(100%, 300px)'; holder.appendChild(slot); labWatch = mountWatch(slot, { E: 330 }); labWatch.slot = slot; }
+      labWatch.slot.style.display = '';
+    } else {
+      fig.style.display = '';
+      if (labWatch) labWatch.slot.style.display = 'none';
+      fig.setAttribute('viewBox', out[0]);
+      fig.innerHTML = `<defs>${dateDefs()}${handDefs('lh')}${handDefs('le')}</defs>${out[1]}`;
+      if (st.fig === 'hands' || st.fig === 'edges') {
+        poseHands(fig); setFacets({ el: fig, fq: {} }, 'hour', POSE.hour); setFacets({ el: fig, fq: {} }, 'minute', POSE.minute);
+      }
+      const d = $('.date-txt', fig); if (d) setDate(d, 28);
+    }
+  }
+  $('#lab-slider').addEventListener('input', e => { $('#lab-slider-out').textContent = e.target.value; renderLab(); });
+  labReady = true;
+
   /* ---------------- pointer + animation loop ---------------- */
   let px = innerWidth / 2, py = innerHeight / 2;
   addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; lastPointer = performance.now(); }, { passive: true });
@@ -392,7 +576,7 @@
     const heroVisible = hero.getBoundingClientRect().bottom > 0;
     if (heroVisible) {
       const r = heroW.el.getBoundingClientRect();
-      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      const cx = r.left + r.width * (-VX / VW), cy = r.top + r.height / 2;
       const targetLa = idle ? 40 + 55 * Math.sin(now / 3600) : Math.atan2(py - cy, px - cx) * 180 / Math.PI + 90;
       if (!reduce) la += shortest(la, targetLa) * .07;
       const tTx = reduce || idle ? 0 : clamp(-(py / innerHeight - .5) * 10, -6, 6);
