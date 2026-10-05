@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 ORDER = [
     ("s01_calibrate", "run"), ("s02_edges", "run"), ("s03_hands", "run"), ("s04_dial_primitives", "run"), ("s05_lines", "run"),
-    ("s06_residual", "run"), ("s07_text", "run"), ("s09_body", "run"), ("s10_bezel", "run"),
+    ("s06_residual", "run"), ("s07_text", "run"), ("s09_body", "run"), ("s10_bezel", "run"), ("s13_caseback", "run"),
 ]
 
 

@@ -1009,7 +1009,14 @@
    "colour": "#D5051F",
    "w": 3.62,
    "tip": 164.2,
-   "tail": 56.58
+   "tail": 56.58,
+   "pad": {
+    "y": 44.5,
+    "r": 5.5,
+    "left": "#E5E4E5",
+    "right": "#BDBCBD",
+    "note": "steel disc under the red stripe, measured on both photos (stage 5 residual)"
+   }
   },
   "hub": {
    "pad_r": 14.0,
