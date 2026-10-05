@@ -202,16 +202,6 @@ input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 
   opacity: calc((var(--p) - var(--t)) * 7); }
 .facts dt { font-size: 1.7rem; font-weight: 500; color: var(--dial-2); direction: ltr; text-align: start; }
 .facts dd { margin: 0; color: var(--ink-2); font-size: .9rem; }
-.spin { transform-box: fill-box; transform-origin: center; animation: spin 40s linear infinite; }
-.spin.slow { animation-duration: 90s; animation-direction: reverse; }
-
-/* compass */
-.compass { background: var(--dial-0); color: #fff; position: relative; overflow: hidden; }
-.compass .kicker { color: #8FB3DC; }
-.compass .body { color: rgba(255,255,255,.78); }
-.readout { display: inline-flex; gap: 16px; align-items: baseline; border: 1px solid rgba(255,255,255,.28); padding: 12px 18px; border-radius: var(--r); font-size: 1.2rem; direction: ltr; }
-.readout span { color: #8FB3DC; font-size: .78rem; }
-#rose { width: min(100%, 520px); margin-inline: auto; display: block; overflow: visible; }
 
 /* specs */
 .specs { background: #fff; }
@@ -259,11 +249,11 @@ input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
-  .hero-lines, .spin { animation: none; }
+  .hero-lines { animation: none; }
   .sw, .chrono #chrono-arc, #blueprint .draw { transition: none; }
 }
 
-/* ---------- 08 edge lab ---------- */
+/* ---------- 07 edge lab ---------- */
 .lab-grid { display: grid; grid-template-columns: minmax(200px, 270px) minmax(0, 1fr) minmax(260px, 340px); gap: 32px; align-items: start; margin-top: 40px; }
 .steps { list-style: none; margin: 0; padding: 0; counter-reset: st; border-top: var(--hair); }
 .steps li { counter-increment: st; }

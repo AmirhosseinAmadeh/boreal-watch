@@ -22,18 +22,19 @@ To regenerate the data from the photo (see `PIPELINE.md`, stage 0):
 
 ## What is on the page
 - Live watch rebuilt from the photo: traced case, lugs, crown and bracelet; 120-tooth fluted bezel; the dial's three rings, two rows of 60 ticks,
-  12 rays, six chords + apex triangle, 25 traced numerals / labels / logo, the date window; faceted hands with measured light response.
+  12 rays, six chords + apex triangle, 25 traced numerals / labels / logo, the date window; faceted steel hands whose facets follow the light (silver to near-black).
 - Light lab: slider turns the light (dial lobes measured from the photo, bezel highlights, gloss).
 - Geometry lab: toggle rings, chords, rays, numerals, minute track, logo/date, hands.
 - Palette: measured HEX values, click to copy.
 - Anatomy and Movement: scroll-driven exploded view and caseback flip.
-- **Edge lab**: the 12 pipeline stages, each drawn from its own output with its measured numbers.
+- **Edge lab**: the 13 pipeline stages, each drawn from its own output with its measured numbers.
 - Specs table (official vs retailer-listing vs photo), FA (RTL) / EN toggle, reduced-motion support.
 
 ## Layout
     index.html  style.css  main.js     the site
     assets/boreal-data.js              dial, hands, bezel, shading (generated)
     assets/boreal-body.js              traced case / bracelet tonal layers (generated)
+    assets/boreal-back.js              traced caseback: body tones + movement colour classes (generated, lazy-loaded, ~1 MB)
     assets/boreal-pipeline.js          stage texts + numbers for the Edge lab (generated)
     assets/boreal-preview.svg          the whole watch as one static SVG (generated)
     pipeline/                          the Python pipeline (stages s01…s12, run_all.py)

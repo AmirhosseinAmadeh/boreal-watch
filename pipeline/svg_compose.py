@@ -169,7 +169,8 @@ def compose(core, body, pose=None, size=1200, bg=None, parts=("body", "bezel", "
             defs.append(d_); g.append(g_)
         sec = Hn["second"]; hub = Hn["hub"]
         g.append(f'<circle r="{hub["pad_r"]}" fill="{hub["pad_colour"]}" fill-opacity=".9"/>')
-        g.append(f'<g transform="rotate({f(pose["second"], 2)})"><path d="M{f(-sec["w"] / 2)} {f(-sec["tip"])}H{f(sec["w"] / 2)}V{f(sec["tail"])}H{f(-sec["w"] / 2)}Z" fill="{sec["colour"]}"/></g>')
+        pad = sec["pad"]
+        g.append(f'<g transform="rotate({f(pose["second"], 2)})"><path d="M0 {f(pad["y"] - pad["r"])}A{pad["r"]} {pad["r"]} 0 0 0 0 {f(pad["y"] + pad["r"])}Z" fill="{pad["left"]}"/><path d="M0 {f(pad["y"] - pad["r"])}A{pad["r"]} {pad["r"]} 0 0 1 0 {f(pad["y"] + pad["r"])}Z" fill="{pad["right"]}"/><path d="M{f(-sec["w"] / 2)} {f(-sec["tip"])}H{f(sec["w"] / 2)}V{f(sec["tail"])}H{f(-sec["w"] / 2)}Z" fill="{sec["colour"]}"/></g>')
         g.append(f'<circle r="{f((hub["ring_r"][0] + hub["ring_r"][1]) / 2)}" fill="none" stroke="{hub["ring_colour"]}" stroke-width="{f(hub["ring_r"][1] - hub["ring_r"][0])}"/>')
         g.append(f'<circle r="{hub["screw_r"]}" fill="{hub["screw_colour"]}"/><circle r="1.1" fill="#3a2a2c"/>')
     bgrect = f'<rect x="{f(vb[0])}" y="{f(vb[1])}" width="{f(vb[2])}" height="{f(vb[3])}" fill="{bg}"/>' if bg else ""

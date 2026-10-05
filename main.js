@@ -31,9 +31,9 @@
     { fa: 'سیگنال', en: 'Signal', items: [
       ['Seconds hand', '#D5051F', 'ثانیه‌شمار (هسته‌ی رنگ)', 'seconds hand (core colour)'] ] },
     { fa: 'پشت‌بند باز', en: 'Openwork caseback', items: [
-      ['Movement plate', '#A7AEB4', 'صفحه‌ی موتور', 'movement plate'],
-      ['Gold gears', '#D9B866', 'چرخ‌دنده‌های طلایی', 'gold wheels'],
-      ['Dark parts', '#3B3D3D', 'پیچ‌ها و قطعات تیره', 'screws and dark parts'] ] },
+      ['Movement plate', '#B0B9BF', 'صفحه‌ی موتور (میانه‌ی پیکسل‌ها)', 'movement plate (median pixel)'],
+      ['Gold gears', '#DEC884', 'چرخ‌دنده‌های طلایی (روشن)', 'gold wheels (lit)'],
+      ['Dark parts', '#4A4B4D', 'پیچ‌ها و قطعات تیره', 'screws and dark parts'] ] },
     { fa: 'رابط سایت رسمی', en: 'Official site UI', items: [
       ['Paper', '#FFFFFF', 'پس‌زمینه', 'background'],
       ['Ink', '#000000', 'متن و دکمه‌ها', 'text and buttons'] ] }
@@ -43,7 +43,7 @@
   const T = {
     fa: {
       nav_light: 'نور', nav_geo: 'هندسه', nav_pal: 'رنگ‌ها', nav_ana: 'کالبد', nav_mov: 'موتور', nav_spec: 'مشخصات', nav_lab: 'لبه‌یابی',
-      k_lab: '08 — لبه‌یابی', t_lab: 'از عکس تا کد، مرحله به مرحله',
+      k_lab: '07 — لبه‌یابی', t_lab: 'از عکس تا کد، مرحله به مرحله',
       p_lab: 'این ساعت با لبه‌یابی روی عکس رسمی بازسازی شده است. هر مرحله را انتخاب کن: چه کاری می‌کند، چه عددی اندازه می‌گیرد، و خروجی‌اش را روی همین ساعتِ برداری ببین. (عکس خام در مخزن نیست؛ فقط کد و خروجی برداری.)',
       l_tones: 'سطح‌های تن', lab_file: 'فایل', lab_note: 'بازسازی‌شده یعنی بخشی که در عکس زیر عقربه پنهان بود و از روی حروف هم‌خانواده کامل شد؛ اندازه‌گیری نیست.',
       h1: 'آبی‌ای که با نور نفس می‌کشد',
@@ -67,9 +67,7 @@
       k_mov: '05 — موتور', t_mov: 'ساعت را برگردان',
       p_mov: 'پشت‌بند باز (openwork) است و موتور خودکوکِ SISTEM51 پشت شیشه دیده می‌شود.',
       f1: 'قطعه؛ تنها موتور دنیا با فقط ۵۱ قطعه و تولید کاملاً خودکار', f2: 'ذخیره‌ی انرژی', f3: 'مقاومت عالی در برابر میدان مغناطیسی (طبق متن رسمی)',
-      k_cmp: '06 — قطب‌نما', t_cmp: 'شمال همیشه قرمز است',
-      p_cmp: 'طراحی ساعت از قطب‌نمای دریایی الهام گرفته. روی خود ساعت تنها رنگ گرم، همین قرمز است. نشانگر را حرکت بده.',
-      k_spec: '07 — مشخصات', t_spec: 'مشخصات ساعت',
+      k_spec: '06 — مشخصات', t_spec: 'مشخصات ساعت',
       spec_note: '«رسمی» یعنی از صفحه‌ی محصول سواچ. «فهرست فروشگاه» یعنی از فهرست‌های خرده‌فروشی که با جست‌وجو پیدا شد و در صفحه‌ی رسمی نبود. «عکس» یعنی از روی تصویر رسمی.',
       foot: 'این صفحه یک مطالعه‌ی بصریِ غیررسمی است و ارتباطی با Swatch ندارد. تصویر ساعت از روی عکس رسمی، از نو با کد کشیده شده است.',
       foot_link: 'صفحه‌ی رسمی محصول ↗',
@@ -89,7 +87,7 @@
     },
     en: {
       nav_light: 'Light', nav_geo: 'Geometry', nav_pal: 'Colors', nav_ana: 'Anatomy', nav_mov: 'Movement', nav_spec: 'Specs', nav_lab: 'Edge lab',
-      k_lab: '08 — Edge lab', t_lab: 'From photo to code, stage by stage',
+      k_lab: '07 — Edge lab', t_lab: 'From photo to code, stage by stage',
       p_lab: 'This watch was rebuilt by edge detection on the official photo. Pick a stage: what it does, which numbers it measures, and its output drawn on this vector watch. (The raw photo is not in the repository, only the code and the vector output.)',
       l_tones: 'Tone levels', lab_file: 'File', lab_note: 'Reconstructed means a part that was hidden under a hand in the photo and completed from sibling glyphs; it is not a measurement.',
       h1: 'A blue that breathes with the light',
@@ -113,9 +111,7 @@
       k_mov: '05 — Movement', t_mov: 'Turn the watch over',
       p_mov: 'The caseback is openwork, so the self-winding SISTEM51 movement shows through the glass.',
       f1: 'parts: the only movement in the world with just 51 parts and fully automated production', f2: 'power reserve', f3: 'exceptional anti-magnetic qualities (official wording)',
-      k_cmp: '06 — Compass', t_cmp: 'North is always red',
-      p_cmp: 'The design draws on the maritime compass. On the watch itself, the only warm colour is this red. Move the pointer.',
-      k_spec: '07 — Specs', t_spec: 'Watch specifications',
+      k_spec: '06 — Specs', t_spec: 'Watch specifications',
       spec_note: '"Official" means from the Swatch product page. "Store listing" means from retailer listings found by search, not on the official page. "Photo" means read off the official image.',
       foot: 'This page is an unofficial visual study and is not affiliated with Swatch. The watch is redrawn in code from the official photo.',
       foot_link: 'Official product page ↗',
@@ -226,12 +222,21 @@
     el.textContent = s; el.setAttribute('x', f2(W.digit_cx - len / 2)); el.setAttribute('textLength', f2(len));
   };
 
-  /* --- hands: two facets per hand (left / right of the axis) with the measured lengthwise colour ramps --- */
-  const FM = HD.facet_model;
-  const facetF = ang => FM.m + FM.a * cosD(ang - FM.theta0);
-  const facetFactor = (hand, ang, side) => {
-    const meas = HD[hand].angle_photo;
-    return clamp(side === 'l' ? facetF(ang) / facetF(meas) : facetF(-ang) / facetF(-meas), .55, 1.4);
+  /* --- hands: two facets per hand (left / right of the axis) with the measured lengthwise colour ramps ---
+     Polished steel is a mirror: a facet is bright when its normal points at a light source and almost black when it faces
+     away. A facet's normal is the hand angle -/+ 90 deg; the light angle (slider / pointer, --la) rotates the two environment
+     lobes. F is a 0..255 brightness: a strong lobe at normal = 0 deg (+ light turn) and a weaker one opposite, with a dark floor
+     between them. The two measured poses (facet at normal -30/+33 deg ~ #DCDBDB, at 150/213 deg ~ #7A797D / #8C8B8F) are fitted;
+     the dark floor (#15151A) and the wider range come from how polished steel looks at other angles, not from extra photos. */
+  const FM = { lo: 21, a1: 240, a2: 133, q: 1.2, th: 1.4, base: 40 };
+  const lobe = d => Math.pow(Math.max(0, cosD(d)), FM.q);
+  const facetF = (n, la) => {
+    const r = n - (la - FM.base) - FM.th;
+    return Math.min(250, FM.lo + FM.a1 * lobe(r) + FM.a2 * lobe(r - 180));
+  };
+  const facetFactor = (hand, ang, side, la) => {
+    const sg = side === 'l' ? -1 : 1, meas = hand === 'second' ? POSE.second : HD[hand].angle_photo;
+    return clamp(facetF(ang + sg * 90, la) / facetF(meas + sg * 90, FM.base), .07, 2.4);
   };
   const rampStops = (h, cols) => {
     const y1 = -h.length, y2 = h.tail;
@@ -240,7 +245,8 @@
   const handDefs = id => ['hour', 'minute'].map(k => {
     const h = HD[k], y1 = -h.length, y2 = h.tail;
     return ['l', 'r'].map(s => `<linearGradient id="h${s}${k[0]}${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${y1}" x2="0" y2="${y2}">${rampStops(h, s === 'l' ? h.left : h.right)}</linearGradient>`).join('');
-  }).join('') + `<radialGradient id="hubpad${id}"><stop offset="0" stop-color="#9B9899"/><stop offset=".6" stop-color="#6E6A6D"/><stop offset="1" stop-color="#3A383A"/></radialGradient>`;
+  }).join('') + `<radialGradient id="hubpad${id}"><stop offset="0" stop-color="#9B9899"/><stop offset=".6" stop-color="#6E6A6D"/><stop offset="1" stop-color="#3A383A"/></radialGradient>
+    <linearGradient id="hubgl${id}" class="cg" gradientUnits="userSpaceOnUse" x1="-14" y1="-14" x2="14" y2="14"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".42" stop-color="#fff" stop-opacity="0"/><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".8"/></linearGradient>`;
   const handMk = (k, id) => {
     const h = HD[k], [tl, tr, br, bl] = h.polygon;
     return `<g class="h-${k[0]}" data-hand="${k}"><path class="fl" d="M${tl[0]} ${tl[1]}L0 ${tl[1]}L0 ${bl[1]}L${bl[0]} ${bl[1]}Z" fill="url(#hl${k[0]}${id})"/>
@@ -249,15 +255,18 @@
   const handsMk = id => {
     const S = HD.second, H = HD.hub;
     return `<g class="w-shadow">${handMk('hour', id)}${handMk('minute', id)}
-      <circle r="${H.pad_r}" fill="url(#hubpad${id})"/>
-      <g class="h-s"><path d="M${-S.w / 2} ${-S.tip}H${S.w / 2}V${S.tail}H${-S.w / 2}Z" fill="${S.colour}"/></g>
+      <circle r="${H.pad_r}" fill="url(#hubpad${id})"/><circle r="${H.pad_r}" fill="url(#hubgl${id})"/>
+      <g class="h-s"><path class="fl" d="M0 ${f2(S.pad.y - S.pad.r)}A${S.pad.r} ${S.pad.r} 0 0 0 0 ${f2(S.pad.y + S.pad.r)}Z" fill="${S.pad.left}"/><path class="fr" d="M0 ${f2(S.pad.y - S.pad.r)}A${S.pad.r} ${S.pad.r} 0 0 1 0 ${f2(S.pad.y + S.pad.r)}Z" fill="${S.pad.right}"/>
+        <path d="M${-S.w / 2} ${-S.tip}H${S.w / 2}V${S.tail}H${-S.w / 2}Z" fill="${S.colour}"/></g>
       <circle r="${f2((H.ring_r[0] + H.ring_r[1]) / 2)}" fill="none" stroke="${H.ring_colour}" stroke-width="${f2(H.ring_r[1] - H.ring_r[0])}"/>
       <circle r="${H.screw_r}" fill="${H.screw_colour}"/><circle r="1.1" fill="#3A2A2C"/></g>`;
   };
   const setFacets = (w, k, ang) => {
     const el = $(`.h-${k[0]}`, w.el); if (!el) return;
+    (w.ang || (w.ang = {}))[k] = ang;
+    const la = w.la === undefined ? FM.base : w.la;
     for (const s of ['l', 'r']) {
-      const q = Math.round(facetFactor(k, ang, s) * 50) / 50, key = k + s;
+      const q = Math.round(facetFactor(k, ang, s, la) * 25) / 25, key = k + s;
       if (w.fq[key] !== q) { w.fq[key] = q; $(s === 'l' ? '.fl' : '.fr', el).style.filter = `brightness(${q})`; }
     }
   };
@@ -329,34 +338,21 @@
     ${bezel ? bezelMk(id) : ''}`;
   const caseSvg = (id, { E, open = false }) => `<svg class="w-svg${open ? ' open' : ''}" viewBox="${f2(VX)} ${-E} ${f2(VW)} ${2 * E}" aria-hidden="true">${bodyInner(id)}</svg>`;
 
-  function movementMk() {
-    let s = `<defs>
-      <radialGradient id="plate" cx=".4" cy=".35" r=".85"><stop offset="0" stop-color="#C3CBD3"/><stop offset=".6" stop-color="#A7AEB4"/><stop offset="1" stop-color="#868B92"/></radialGradient>
-      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1CB6B"/><stop offset=".5" stop-color="#D9B866"/><stop offset="1" stop-color="#B88A1E"/></linearGradient>
-      <linearGradient id="gearS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F2F3"/><stop offset=".5" stop-color="#B9BBBE"/><stop offset="1" stop-color="#E4E5E6"/></linearGradient>
-      <clipPath id="win"><circle r="104"/></clipPath></defs>
-      <g clip-path="url(#win)"><circle r="104" fill="url(#plate)"/>`;
-    for (let k = 0; k < 36; k++) s += `<ellipse rx="100" ry="34" transform="rotate(${k * 5})" fill="none" stroke="#587099" stroke-opacity=".36" stroke-width=".6"/>`;
-    for (let k = 0; k < 24; k++) s += `<ellipse rx="62" ry="21" transform="rotate(${k * 7.5 + 3})" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width=".6"/>`;
-    s += `<path d="M-64 -50 A82 82 0 0 1 22 -78" fill="none" stroke="url(#gold)" stroke-width="14"/>
-      <path d="M-82 18 A84 84 0 0 0 -34 74" fill="none" stroke="url(#gold)" stroke-width="14"/>
-      <g transform="translate(58 34)"><circle r="23" fill="none" stroke="url(#gold)" stroke-width="9"/><circle r="9" fill="#3B3D3D"/><path d="M-23 0H23M0 -23V23" stroke="url(#gold)" stroke-width="3"/></g>
-      <g class="spin slow"><circle cx="-34" cy="-6" r="12" fill="none" stroke="#C9CBCE" stroke-width="3" stroke-dasharray="2.4 1.6"/><circle cx="-34" cy="-6" r="4" fill="#565454"/></g>
-      <g class="spin"><circle r="31" fill="none" stroke="url(#gearS)" stroke-width="9" stroke-dasharray="3.1 2.3"/><circle r="25" fill="url(#gearS)"/><circle r="25" fill="none" stroke="#7A7C80" stroke-width=".8"/>
-        <path d="M0 -25V25M-25 0H25M-18 -18L18 18M18 -18L-18 18" stroke="#8D8F93" stroke-width="1"/><circle r="8" fill="#565454"/><circle r="3" fill="#D9DBDD"/></g>
-      <path d="M-18 12 L72 -52" stroke="#2B2D2E" stroke-width="1.5" stroke-linecap="round"/>`;
-    for (const [x, y] of [[-70, -30], [60, -62], [-52, 66], [86, 8], [14, 84], [-12, -90]]) s += `<circle cx="${x}" cy="${y}" r="3.4" fill="#3B3D3D" stroke="#C9CBCE" stroke-width=".8"/>`;
-    return s + '</g>';
-  }
-  function caseBackMk(E) {
-    // the body seen from behind is the same silhouette mirrored; the round caseback window and movement sit on top (drawn at 1.84x the old size)
-    return `<svg id="caseback" viewBox="${f2(-(UB[2] + PAD))} ${-E} ${f2(VW)} ${2 * E}" aria-hidden="true">${bodyInner('bk', { flip: true, bezel: false })}
-      <g transform="scale(1.84)"><circle r="119" fill="url(#cfbk)" stroke="#6F7174" stroke-width=".8"/><circle r="107" fill="none" stroke="#7B7D81" stroke-width="3"/>
-      <path id="bkarc" d="M-113 0 A113 113 0 0 1 113 0" fill="none"/>
-      <text font-family="Poppins,sans-serif" font-size="8" font-weight="600" letter-spacing="3" fill="#4A4C4F"><textPath href="#bkarc" startOffset="64%">SWISS</textPath></text>
-      ${movementMk()}</g>
-      <defs><linearGradient id="cfbk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".4" stop-color="#D9DBDD"/><stop offset=".7" stop-color="#F6F7F8"/><stop offset="1" stop-color="#BFC1C4"/></linearGradient></defs></svg>`;
-  }
+  /* --- caseback: its own trace of the back photo (assets/boreal-back.js, ~1 MB, loaded lazily).
+     Until it arrives the card shows the mirrored case silhouette. Units are the same as the front (dial radius = 200). --- */
+  const backFallback = E => `<svg id="caseback" viewBox="${f2(-(UB[2] + PAD))} ${-E} ${f2(VW)} ${2 * E}" aria-hidden="true">${bodyInner('bk', { flip: true, bezel: false })}</svg>`;
+  const backPaths = K => {
+    const sc = f2(1e4 / (K.px_per_unit * K.grid_per_px)) / 1e4;
+    return `<g transform="scale(${sc})" fill-rule="evenodd">${K.body.concat(K.window).map(l => `<path class="bk-${l.name}" d="${l.d}" fill="${l.fill}"${l.opacity ? ` fill-opacity="${l.opacity}"` : ''}/>`).join('')}</g>`;
+  };
+  const caseBackMk = (K, E) => `<svg id="caseback" viewBox="${f2(-(UB[2] + PAD))} ${-E} ${f2(VW)} ${2 * E}" aria-hidden="true">${backPaths(K)}</svg>`;
+  let backLoading = null;
+  const loadBack = () => backLoading || (backLoading = new Promise(res => {
+    if (B.back) return res(B.back);
+    const sc = document.createElement('script');
+    sc.src = 'assets/boreal-back.js'; sc.onload = () => res(B.back); sc.onerror = () => res(null);
+    document.head.appendChild(sc);
+  }));
 
   /* ---------------- watch instances ---------------- */
   let uid = 0;
@@ -397,6 +393,7 @@
     const m = d.getMinutes() + s / 60, h = (d.getHours() % 12) + m / 60;
     // the photo's hands are at 10:09; their drawn pose is the measured one, the clock rotates them from that reference
     w.s.setAttribute('transform', `rotate(${(s * 6).toFixed(2)})`);
+    setFacets(w, 'second', (s * 6) % 360);
     w.m.setAttribute('transform', `rotate(${(m * 6).toFixed(2)})`);
     w.h.setAttribute('transform', `rotate(${(h * 30).toFixed(2)})`);
     setFacets(w, 'hour', (h * 30) % 360); setFacets(w, 'minute', (m * 6) % 360);
@@ -404,6 +401,8 @@
     if (w.date && w.lastDay !== dd) { w.lastDay = dd; setDate(w.date, dd); }
   }
   const setMetalLight = (w, deg) => {
+    w.la = deg;
+    if (w.ang) for (const k in w.ang) setFacets(w, k, w.ang[k]);
     w.grads.forEach(g => g.setAttribute('gradientTransform', `rotate(${deg.toFixed(1)})`));
     const sh = Math.round((deg - 40) / 3);
     if (sh !== w.shift) { w.shift = sh; updateBezel(w.el, sh); }
@@ -414,7 +413,8 @@
   const lightW = mountWatch($('#watch-light'), { E: 380 });
   mountWatch($('#watch-flip'), { E: 380 });
   { const el = $('.watch', $('#watch-flip')); el.style.setProperty('--la', '40deg'); }
-  $('#caseback').outerHTML = caseBackMk(380);
+  $('#caseback').outerHTML = backFallback(380);
+  loadBack().then(K => { if (K && $('#caseback')) $('#caseback').outerHTML = caseBackMk(K, 380); });
 
   /* ---------------- hero background: the dial geometry, enlarged ---------------- */
   $('#hero-lines').innerHTML = `<g transform="scale(2)" stroke-opacity=".5" fill-opacity=".5" fill="none">${ringsMk()}${chordsMk()}${raysMk()}</g>`;
@@ -464,32 +464,12 @@
   angle.addEventListener('input', () => setLight(+angle.value));
   setLight(+angle.value);
 
-  /* ---------------- compass rose ---------------- */
-  const LINE = '#D3D9E4';
-  const rose = $('#rose');
-  (() => {
-    let s = '<defs><linearGradient id="needleS" x1="0" x2="1"><stop offset="0" stop-color="#87878B"/><stop offset=".5" stop-color="#E7E6EA"/><stop offset="1" stop-color="#87878B"/></linearGradient></defs>';
-    s += `<circle r="204" fill="none" stroke="${LINE}" stroke-opacity=".4"/><circle r="120" fill="none" stroke="${LINE}" stroke-opacity=".16"/><circle r="62" fill="none" stroke="${LINE}" stroke-opacity=".16"/>`;
-    s += `<path d="M-204 0H204M0 -204V204" stroke="${LINE}" stroke-opacity=".14"/>`;
-    for (let a = 0; a < 360; a += 5) {
-      const big = a % 30 === 0;
-      s += `<line y1="-204" y2="${big ? -184 : -194}" transform="rotate(${a})" stroke="${LINE}" stroke-width="${big ? 2 : 1}" stroke-opacity="${big ? .95 : .55}"/>`;
-    }
-    [['N', 0], ['E', 90], ['S', 180], ['W', 270]].forEach(([t, a]) => {
-      const [x, y] = P(160, a);
-      s += `<text x="${x}" y="${y + 9}" text-anchor="middle" style="font:600 26px 'Barlow Condensed',sans-serif;letter-spacing:.08em" fill="#F2F6FB">${t}</text>`;
-    });
-    s += '<polygon points="0,-222 -7,-208 7,-208" fill="#C81A35"/>';
-    s += '<g id="needle"><polygon points="0,-150 -15,0 15,0" fill="#C81A35"/><polygon points="0,150 -15,0 15,0" fill="url(#needleS)"/><circle r="11" fill="#E7E6EA" stroke="#fff" stroke-opacity=".6"/><circle r="4" fill="#02103D"/></g>';
-    rose.innerHTML = s;
-  })();
-  const needle = $('#needle'), bearingOut = $('#bearing');
-  let bearing = 0, bearingTarget = 0, lastPointer = -1e9;
+  let lastPointer = -1e9;
 
 
-  /* ---------------- 08 edge lab: every pipeline stage drawn from its own output ---------------- */
+  /* ---------------- 07 edge lab: every pipeline stage drawn from its own output ---------------- */
   const LAB = (B.pipeline && B.pipeline.stages) || [];
-  let labI = 0, labWatch = null;
+  let labI = 0, labWatch = null, labFig = '';
   const TINT = { ring: '#F4B860', tick: '#7FD6E8', ray: '#F08BB4', chord: '#9BE29A', text: '#FFFFFF', recon: '#FFB36B', hand: '#DADDE3', resid: '#FF7A7A' };
   const tint = (c, inner) => `<g class="tint" style="--c:${c}">${inner}</g>`;
   const dim = inner => `<g opacity=".28">${inner}</g>`;
@@ -531,6 +511,12 @@
         const lv = BODY.levels.slice(0, tones + 1);
         return [`${f2(VX)} -520 ${f2(VW)} 1040`, `<g transform="scale(${f2(BODY_SCALE * 1e4) / 1e4})" fill-rule="evenodd">${lv.map(l => `<path d="${l.d}" fill="${l.fill}"/>`).join('')}</g>`];
       }
+      case 'caseback': {
+        const K = B.back;
+        if (!K) { loadBack().then(() => renderLab()); return ['-215 -215 430 430', lt(0, 0, 'loading the caseback trace ...', 'middle')]; }
+        const sc = f2(1e4 / (K.px_per_unit * K.grid_per_px)) / 1e4, lv = K.body.concat(K.window).slice(0, tones + 1);
+        return [`${f2(-(UB[2] + PAD))} -520 ${f2(VW)} 1040`, `<g transform="scale(${sc})" fill-rule="evenodd">${lv.map(l => `<path d="${l.d}" fill="${l.fill}"${l.opacity ? ` fill-opacity="${l.opacity}"` : ''}/>`).join('')}</g>`];
+      }
       case 'bezel':
         return ['-240 -240 480 480', `<circle r="${BZ.inner_ring[0]}" fill="#032557"/>${bezelMk('lb')}<circle r="${BODY.inner_radius_units}" fill="none" stroke="#fff" stroke-opacity=".3" stroke-dasharray="2 3"/>`];
       default:
@@ -544,8 +530,13 @@
     const st = LAB[labI], tx = st[lang];
     $('#lab-info').innerHTML = `<h3>${tx[0]}</h3><p>${tx[1]}</p><dl>${st.facts.map(f => `<div><dt>${f[lang]}</dt><dd>${f.v}</dd></div>`).join('')}</dl>
       <div class="file">${T[lang].lab_file}: pipeline/${st.file}</div><p class="lab-note">${T[lang].lab_note}</p>`;
-    const fig = $('#lab-fig'), tones = +$('#lab-slider').value;
-    $('#lab-slider-wrap').hidden = st.fig !== 'body';
+    const fig = $('#lab-fig'), sl = $('#lab-slider');
+    const sliderMax = st.fig === 'body' ? 8 : st.fig === 'caseback' && B.back ? B.back.body.length + B.back.window.length - 1 : 0;
+    if (sliderMax) { sl.max = sliderMax; if (labFig !== st.fig) sl.value = sliderMax; }   // a new slider stage starts fully drawn
+    labFig = st.fig;
+    const tones = +sl.value;
+    $('#lab-slider-out').textContent = sl.value;
+    $('#lab-slider-wrap').hidden = !sliderMax;
     const out = labSvg(st, tones);
     const holder = fig.parentElement;
     if (!out) {                                   // "build" / "verify": show the live watch itself
@@ -588,14 +579,6 @@
       setMetalLight(heroW, la);
     }
     watches.forEach(w => setHands(w, Date.now() + w.offset));
-    const rr = rose.getBoundingClientRect();
-    if (rr.bottom > 0 && rr.top < innerHeight) {
-      if (idle || reduce) bearingTarget = reduce ? 0 : 24 * Math.sin(now / 1500);
-      else bearingTarget = Math.atan2(px - (rr.left + rr.width / 2), -(py - (rr.top + rr.height / 2))) * 180 / Math.PI;
-      bearing += shortest(bearing, bearingTarget) * .1;
-      needle.setAttribute('transform', `rotate(${bearing.toFixed(2)})`);
-      bearingOut.textContent = String(Math.round(((bearing % 360) + 360) % 360)).padStart(3, '0') + '°';
-    }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

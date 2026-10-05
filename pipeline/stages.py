@@ -14,6 +14,7 @@ def stages():
     bez = load_json("bezel_px.json")
     text = load_json("text_items.json")["items"]
     body = load_json("body.json")
+    back = load_json("caseback.json") if (OUT / "caseback.json").exists() else None
     ver = load_json("verify.json") if (OUT / "verify.json").exists() else {}
     k = 200.0 / a["dial_edge_radius_px"]
     r = prim["rings"]
@@ -79,10 +80,16 @@ def stages():
              en=("Fluted bezel", "The teeth are periodic: an angular FFT gives 120 teeth (pitch 3.000 deg). The median of 120 aligned patches gives one exact tooth. Each tooth's colour is stored so the photo's specular pattern can rotate with the light."),
              facts=[F("دندانه", "teeth", "120"), F("شعاع (px)", "radius (px)", f"{bez['tooth_r_in_px']:.0f}–{bez['tooth_r_out_px']:.0f}"), F("شیار", "groove", f"{bez['groove_px_at_mid']} px"),
                     F("انحراف از شبکه‌ی ۳° (px)", "deviation from the 3° grid (px)", "1.07 rms")]),
+        *([dict(id="caseback", file="s13_caseback.py", fig="caseback",
+             fa=("پشت ساعت", "عکس پشت (سومین تصویر رسمی) همان بدنه‌ی جلو از پشت است: با آینه‌کردن آلفای جلو و برازش مقیاس و جابه‌جایی، سیلوئت‌ها روی هم می‌افتند و مرکز و مقیاس پشت به‌دست می‌آید. بدنه مثل مرحله‌ی ۹ با تن‌های فلز کشیده می‌شود. پنجره‌ی موتور رنگی است: mean-shift دانه‌ی صفحه را می‌گیرد، k-means در Lab رنگ‌های پهن را می‌دهد، لایه‌ی طلا برای حروف و دندانه‌های ریز و یک فیلتر خط (Sato با آستانه‌ی دوگانه) برای خطوط ژیلوش جدا کشیده می‌شود. کشیدن لایه‌ها از بزرگ به کوچک است."),
+             en=("Caseback", "The back photo (third official image) is the front body seen from behind: mirror the front alpha, fit scale and shift, and the silhouettes coincide, which gives the back's centre and scale. The body is traced like stage 9, in metal tones. The movement window is coloured: mean-shift removes the plate's grain, k-means in Lab gives the broad colours, a gold layer catches thin letters and teeth, and a ridge filter (Sato with hysteresis) draws the guilloche lines separately. Layers are painted from large to small."),
+             facts=[F("تطبیق سیلوئت IoU", "registration IoU", str(back["iou"])), F("مقیاس نسبت به جلو", "scale vs front", str(back["scale_vs_front"])),
+                    F("رنگ‌های پنجره", "window colour classes", f'{back["k_window"]} + gold + lines'), F("حجم مسیرها", "path size", f"{back['path_chars'] // 1024} KB"),
+                    F("خطای روشنایی (محوشده)", "luminance MAE (blurred)", f"{back['verify'].get('window_mae_blur3', '—')} window / {back['verify'].get('case_mae_blur3', '—')} case")])] if back else []),
         dict(id="build", file="s11_build.py", fig="build",
              fa=("ساخت", "همه‌ی عددها به واحد صفحه (۲۰۰ = شعاع) تبدیل و در assets/boreal-data.js و boreal-body.js نوشته می‌شود. سایت دقیقاً همین داده را می‌کشد؛ همان داده یک SVG ایستا هم می‌سازد."),
              en=("Build", "Every number is converted to dial units (200 = radius) and written to assets/boreal-data.js and boreal-body.js. The site draws exactly that data; the same data also yields a static SVG."),
-             facts=[F("اندازه‌ی داده", "data size", "≈55 KB + 171 KB")]),
+             facts=[F("اندازه‌ی داده", "data size", "≈55 KB + 171 KB (+ 1.1 MB caseback, lazy)")]),
         dict(id="verify", file="s12_verify.py", fig="verify",
              fa=("راستی‌آزمایی", "مدل برداری روی شبکه‌ی پیکسلی عکس رسم و با عکس مقایسه می‌شود. خطِ چاپ ~۱px چمفر دارد (کلِ پهنای خط ۲–۴px)؛ بدنه ۹۹٫۹٪ سیلوئت؛ عقربه‌ها ۴px انحراف از اختلاف‌منظرِ عکس (محور عقربه‌ها از مرکز صفحه ۳–۴px جدا بود و در مدل حذف شد)."),
              en=("Verify", "The vector model is rendered on the photo's pixel grid and compared. Print edges are within ~1 px chamfer (strokes are 2-4 px wide); the body matches 99.9 % of the silhouette; hands differ by ~4 px because the photo has parallax (the hands' axis was 3-4 px off the dial centre; the model removes it)."),

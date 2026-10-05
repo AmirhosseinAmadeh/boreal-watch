@@ -34,7 +34,7 @@ R = dial radius = 342.87 px = 200 site units. Photo centre (931.40, 962.84) px.
 | Dial, lit lobes | `#0A4B8A` / `#074583` | peaks at ≈105° and ≈257° |
 | Chapter band | `#04376C` | band from r = 318.5 px outwards, about 1.4× brighter than the dial, darkening towards the bezel |
 | Printed lines | `#ECEBEB` | core of the strokes |
-| Hands | two facets sampled at 16 stations along the length (stored in the data file); typical light facet ≈ `#DCDBDB`, shaded facet ≈ `#7A797D` | brightness follows `F(t)=193.5+53.4·cos(t−120°)` |
+| Hands | two facets sampled at 16 stations along the length (stored in the data file); typical light facet ≈ `#DCDBDB`, shaded facet ≈ `#7A797D` | brightness follows the light: a facet's normal is the hand angle ∓90°; `F = 21 + 240·L(n−θ) + 133·L(n−θ−180°)`, `L(d)=max(0,cos d)^1.2`, θ = 1.4° + (light angle − 40°). Bright lobe ≈ white, floor `#15151A` (fitted on the two measured poses only; the dark floor is physical expectation, not measured) |
 | Fluted bezel | teeth `#7C7B7E`–`#A09E9F` (per tooth), groove `#59595B` | |
 | Case / bracelet | 8 tonal levels `#1E1E1F` … `#F1F1F1` | k-means on luminance |
 
@@ -50,4 +50,4 @@ Retailer listings (found via search, not on the official page): 42.00 mm diamete
 
 ## Not measured / reconstructed
 See “Limitations” in `PIPELINE.md`: hidden glyph parts (hour “10” zero, hour “2”, minute label “10”, logo “a”, SWISS “I”), hand parallax,
-static lighting of the metal, typeset date digits, and the caseback (still the earlier illustration).
+static lighting of the metal, typeset date digits, and the caseback's flattened grain (the caseback itself is now traced from the back photo).
