@@ -27,6 +27,7 @@
     <a href="#anatomy" data-i18n="nav_ana">کالبد</a>
     <a href="#movement" data-i18n="nav_mov">موتور</a>
     <a href="#specs" data-i18n="nav_spec">مشخصات</a>
+    <a href="#pipeline" data-i18n="nav_lab">لبه‌یابی</a>
   </nav>
   <button class="lang" id="lang" type="button" aria-label="Language"><span data-lang-label>EN</span></button>
 </header>
@@ -72,15 +73,12 @@
             <strong class="mono" id="chip-hex">#094782</strong>
           </div>
         </div>
-        <pre class="code" dir="ltr"><code>/* two-lobe sun-brush, measured from the product photo */
+        <pre class="code" dir="ltr"><code>/* measured, not guessed: 72 colour samples (one per 5 deg) of the dial
+   with printing, hands and ticks masked out -> lobes at ~105 deg and ~257 deg */
 background:
-  repeating-conic-gradient(rgba(255,255,255,.05) 0 .5deg,
-                           rgba(0,0,0,.06) .5deg 1deg),
-  conic-gradient(from var(--light),
-    #094782 0deg, #02103D 45deg, #02103D 135deg,
-    #094782 180deg, #02103D 225deg, #02103D 315deg,
-    #094782 360deg),
-  #05255A;</code></pre>
+  var(--brush),                /* seeded sun-brush, sigma ~4/255, correlation ~0.55 deg */
+  conic-gradient(from calc(var(--la) - 40deg),
+    #011542 0deg, ... #0A4B8A 105deg, ... #032557 180deg, ... #074583 255deg, ... 360deg);</code></pre>
       </div>
     </div>
     <div class="reveal light-watch"><div id="watch-light" class="watch-slot"></div></div>
@@ -203,6 +201,24 @@ background:
   </div>
 </section>
 
+
+<!-- 08 PIPELINE / EDGE LAB -->
+<section class="sec lab" id="pipeline">
+  <div class="wrap">
+    <div class="reveal head">
+      <p class="kicker mono" data-i18n="k_lab">08 — لبه‌یابی</p>
+      <h2 data-i18n="t_lab">از عکس تا کد، مرحله به مرحله</h2>
+      <p class="body" data-i18n="p_lab">این ساعت با لبه‌یابی روی عکس رسمی بازسازی شده است. هر مرحله را انتخاب کن: چه کاری می‌کند، چه عددی اندازه می‌گیرد، و خروجی‌اش را روی همین ساعتِ برداری ببین. (عکس خام در مخزن نیست؛ فقط کد و خروجی برداری.)</p>
+    </div>
+    <div class="lab-grid reveal">
+      <ol class="steps" id="steps"></ol>
+      <div class="lab-fig"><svg id="lab-fig" viewBox="-215 -215 430 430" role="img" aria-label="Pipeline output"></svg>
+        <label class="lab-slider" id="lab-slider-wrap" hidden><span class="mono small" data-i18n="l_tones">سطح‌های تن</span><input id="lab-slider" type="range" min="0" max="8" value="8"><output id="lab-slider-out" class="mono small">8</output></label></div>
+      <div class="lab-info" id="lab-info"></div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="foot">
@@ -221,6 +237,9 @@ background:
 
 <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
 
+<script src="assets/boreal-data.js"></script>
+<script src="assets/boreal-body.js"></script>
+<script src="assets/boreal-pipeline.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
