@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SISTEM BOREAL YIS401GC — مطالعه‌ی ساعت</title>
+<meta name="description" content="مطالعه‌ی بصری ساعت SISTEM BOREAL YIS401GC: صفحه‌ی آبی sun-brushed با هندسه‌ی قطب‌نما، بدنه و بند استیل، و پشت‌بند بازِ SISTEM51.">
+<meta name="theme-color" content="#05255A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2715%27 fill=%27%2305255A%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2713.5%27 fill=%27none%27 stroke=%27%23BBBABC%27 stroke-width=%273%27 stroke-dasharray=%271.4 .9%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%279%27 fill=%27none%27 stroke=%27%23D3D9E4%27 stroke-width=%27.8%27/%3E%3Cpath d=%27M16 16V4%27 stroke=%27%23C81A35%27 stroke-width=%271.6%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@400;500;600;700&family=Vazirmatn:wght@300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<header class="bar">
+  <a class="mark" href="#top" aria-label="SISTEM BOREAL">
+    <span class="mark-dot" aria-hidden="true"></span>
+    <b>SISTEM BOREAL</b><i>YIS401GC</i>
+  </a>
+  <nav aria-label="Sections">
+    <a href="#light" data-i18n="nav_light">نور</a>
+    <a href="#geometry" data-i18n="nav_geo">هندسه</a>
+    <a href="#palette" data-i18n="nav_pal">رنگ‌ها</a>
+    <a href="#anatomy" data-i18n="nav_ana">کالبد</a>
+    <a href="#movement" data-i18n="nav_mov">موتور</a>
+    <a href="#specs" data-i18n="nav_spec">مشخصات</a>
+  </nav>
+  <button class="lang" id="lang" type="button" aria-label="Language"><span data-lang-label>EN</span></button>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <svg class="hero-lines" id="hero-lines" viewBox="-400 -400 800 800" aria-hidden="true"></svg>
+  <div class="hero-grid wrap">
+    <div class="hero-text">
+      <span class="tag">AUTOMATIC</span>
+      <p class="eyebrow">SISTEM BOREAL · YIS401GC</p>
+      <h1 data-i18n="h1">آبی‌ای که با نور نفس می‌کشد</h1>
+      <p class="lead" data-i18n="lead">صفحه‌ی آبی sun-brushed، هندسه‌ی قطب‌نما، بدنه و بند استیل صیقلی و یک عقربه‌ی ثانیه‌شمار قرمز.</p>
+      <a class="cta" href="#light"><span class="cta-dot" aria-hidden="true"></span><span data-i18n="cta">ببین چطور ساخته شده</span></a>
+      <p class="hint mono" data-i18n="hint">نشانگر را حرکت بده تا نور بچرخد · عقربه‌ها را بکش</p>
+    </div>
+    <div class="hero-watch">
+      <div id="watch-hero" class="watch-slot hero-slot"></div>
+    </div>
+  </div>
+  <div class="ruler" aria-hidden="true"></div>
+</section>
+
+<!-- 01 LIGHT -->
+<section class="sec light" id="light">
+  <div class="wrap two">
+    <div class="reveal">
+      <p class="kicker mono" data-i18n="k_light">01 — نور</p>
+      <h2 data-i18n="t_light">یک آبی، هزار زاویه</h2>
+      <p class="body" data-i18n="p_light">صفحه‌ی ساعت sun-brushed است: خطوط ریز شعاعی دارد و نور روی آن دو لکه‌ی روشن مقابل هم می‌سازد. بسته به زاویه از سرمه‌ای تقریباً سیاه تا آبی کبالتی دیده می‌شود، پس هویتش یک گرادیان است، نه یک HEX.</p>
+      <div class="panel">
+        <label class="slider">
+          <span class="mono" data-i18n="l_angle">زاویه‌ی نور</span>
+          <input id="angle" type="range" min="0" max="360" value="40" aria-label="Light angle">
+          <output id="angle-out" class="mono">40°</output>
+        </label>
+        <div class="perceived">
+          <span class="chip" id="chip"></span>
+          <div>
+            <span class="mono small" data-i18n="l_perceived">آبی دیده‌شده، سمت چپِ صفحه</span>
+            <strong class="mono" id="chip-hex">#094782</strong>
+          </div>
+        </div>
+        <pre class="code" dir="ltr"><code>/* two-lobe sun-brush, measured from the product photo */
+background:
+  repeating-conic-gradient(rgba(255,255,255,.05) 0 .5deg,
+                           rgba(0,0,0,.06) .5deg 1deg),
+  conic-gradient(from var(--light),
+    #094782 0deg, #02103D 45deg, #02103D 135deg,
+    #094782 180deg, #02103D 225deg, #02103D 315deg,
+    #094782 360deg),
+  #05255A;</code></pre>
+      </div>
+    </div>
+    <div class="reveal light-watch"><div id="watch-light" class="watch-slot"></div></div>
+  </div>
+</section>
+
+<!-- 02 GEOMETRY -->
+<section class="sec geometry" id="geometry">
+  <div class="wrap">
+    <div class="reveal head">
+      <p class="kicker mono" data-i18n="k_geo">02 — هندسه</p>
+      <h2 data-i18n="t_geo">هندسه‌ی قطب‌نما روی صفحه</h2>
+      <p class="body" data-i18n="p_geo">روی صفحه فقط خطوط نازک سفید-آبی است: سه حلقه‌ی هم‌مرکز، یک ستاره‌ی شش‌پر (دو مثلث)، هشت پرتو دور مرکز و دو ردیف عدد. لایه‌ها را روشن و خاموش کن.</p>
+    </div>
+    <div class="blueprint two">
+      <div class="bp-panel reveal"><svg id="blueprint" viewBox="-215 -215 430 430" role="img" aria-label="Dial geometry"></svg></div>
+      <div class="reveal">
+        <ul class="toggles" id="toggles"></ul>
+        <p class="mono small copyhint" data-i18n="geo_note">شعاع‌ها نسبت به شعاع صفحه (R) از روی عکس رسمی اندازه‌گیری شده‌اند.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PALETTE -->
+<section class="sec palette" id="palette">
+  <div class="wrap">
+    <div class="reveal head">
+      <p class="kicker mono" data-i18n="k_pal">03 — رنگ‌ها</p>
+      <h2 data-i18n="t_pal">رنگ‌هایی که از عکس رسمی اندازه گرفتم</h2>
+      <p class="body" data-i18n="p_pal">این HEXها میانه‌ی پیکسل‌های همان ناحیه از عکس محصول‌اند، نه حدس. ترکیب سطح ساعت: حدود ۶۴٪ فلز، ۳۵٪ آبی و کمتر از ۱٪ قرمز؛ قرمز فقط خود عقربه‌ی ثانیه‌شمار است.</p>
+    </div>
+    <div class="ratio reveal" aria-label="64 / 35 / 1">
+      <span style="--w:64" class="r-metal"><i class="mono">STEEL ≈64%</i></span>
+      <span style="--w:35" class="r-blue"><i class="mono">BLUE ≈35%</i></span>
+      <span style="--w:1.2" class="r-red"><i class="mono"></i></span>
+    </div>
+    <div id="swatch-groups"></div>
+    <p class="mono small copyhint" data-i18n="copyhint">برای کپی HEX کلیک کن</p>
+  </div>
+</section>
+
+<!-- 04 ANATOMY -->
+<section class="explode-wrap" id="anatomy">
+  <div class="explode" id="explode">
+    <div class="wrap two sticky">
+      <div class="ex-text">
+        <p class="kicker mono" data-i18n="k_ana">04 — کالبد</p>
+        <h2 data-i18n="t_ana">لایه به لایه</h2>
+        <p class="body" data-i18n="p_ana">با اسکرول، ساعت باز می‌شود.</p>
+        <ul class="callouts">
+          <li style="--t:.72"><b data-i18n="c5">کریستال</b><span data-i18n="c5d">شیشه‌ی شفاف روی صفحه</span></li>
+          <li style="--t:.54"><b data-i18n="c4">عقربه‌ها</b><span data-i18n="c4d">استیل، وجه‌دار، با ثانیه‌شمار قرمز</span></li>
+          <li style="--t:.36"><b data-i18n="c3">صفحه</b><span data-i18n="c3d">آبی sun-brushed با خطوط قطب‌نما</span></li>
+          <li style="--t:.2"><b data-i18n="c2">حلقه‌ی شیاردار</b><span data-i18n="c2d">لبه‌ی سکه‌ای (fluted) دور صفحه</span></li>
+          <li style="--t:.04"><b data-i18n="c1">بدنه</b><span data-i18n="c1d">استیل صیقلی</span></li>
+        </ul>
+      </div>
+      <div class="ex-stage" aria-hidden="true">
+        <div class="stage3d">
+          <div class="layer l-case"></div>
+          <div class="layer l-bezel"></div>
+          <div class="layer l-dial" id="ex-dial"></div>
+          <div class="layer l-hands" id="static-hands"></div>
+          <div class="layer l-crystal"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 MOVEMENT (caseback flip) -->
+<section class="move-wrap" id="movement">
+  <div class="move" id="move">
+    <div class="wrap two sticky">
+      <div class="flip-col">
+        <div class="flipcard" aria-hidden="true">
+          <div class="inner">
+            <div class="face front"><div id="watch-flip" class="watch-slot"></div></div>
+            <div class="face back"><svg id="caseback" viewBox="-150 -190 300 380"></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="mv-text">
+        <p class="kicker mono" data-i18n="k_mov">05 — موتور</p>
+        <h2 data-i18n="t_mov">ساعت را برگردان</h2>
+        <p class="body" data-i18n="p_mov">پشت‌بند باز (openwork) است و موتور خودکوکِ SISTEM51 پشت شیشه دیده می‌شود.</p>
+        <dl class="facts">
+          <div style="--t:.55"><dt class="mono">51</dt><dd data-i18n="f1">قطعه؛ تنها موتور دنیا با فقط ۵۱ قطعه و تولید کاملاً خودکار</dd></div>
+          <div style="--t:.68"><dt class="mono">90 h</dt><dd data-i18n="f2">ذخیره‌ی انرژی</dd></div>
+          <div style="--t:.8"><dt class="mono" style="font-size:.95rem">ANTI-MAG</dt><dd data-i18n="f3">مقاومت عالی در برابر میدان مغناطیسی (طبق متن رسمی)</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 COMPASS -->
+<section class="sec compass" id="compass">
+  <div class="wrap two">
+    <div class="reveal">
+      <p class="kicker mono" data-i18n="k_cmp">06 — قطب‌نما</p>
+      <h2 data-i18n="t_cmp">شمال همیشه قرمز است</h2>
+      <p class="body" data-i18n="p_cmp">طراحی ساعت از قطب‌نمای دریایی الهام گرفته. روی خود ساعت تنها رنگ گرم، همین قرمز است. نشانگر را حرکت بده.</p>
+      <p class="readout mono"><span>BRG</span> <output id="bearing">000°</output></p>
+    </div>
+    <div class="reveal"><svg id="rose" viewBox="-220 -220 440 440" role="img" aria-label="Compass"></svg></div>
+  </div>
+</section>
+
+<!-- 07 SPECS -->
+<section class="sec specs" id="specs">
+  <div class="wrap">
+    <div class="reveal head">
+      <p class="kicker mono" data-i18n="k_spec">07 — مشخصات</p>
+      <h2 data-i18n="t_spec">مشخصات ساعت</h2>
+    </div>
+    <dl class="spec-table reveal" id="spec-table"></dl>
+    <p class="mono small copyhint" data-i18n="spec_note">«رسمی» یعنی از صفحه‌ی محصول سواچ. «فهرست فروشگاه» یعنی از فهرست‌های خرده‌فروشی که با جست‌وجو پیدا شد و در صفحه‌ی رسمی نبود.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark-dot" aria-hidden="true"></span>
+    <p class="mono small"><span data-i18n="foot">این صفحه یک مطالعه‌ی بصریِ غیررسمی است و ارتباطی با Swatch ندارد. تصویر ساعت از روی عکس رسمی، از نو با کد کشیده شده است.</span>
+      <a href="https://www.swatch.com/en-en/sistem-boreal-yis401gc/YIS401GC.html" rel="noopener" target="_blank" data-i18n="foot_link">صفحه‌ی رسمی محصول ↗</a></p>
+  </div>
+</footer>
+
+<svg class="chrono" viewBox="-30 -30 60 60" aria-hidden="true">
+  <circle r="24" fill="rgba(255,255,255,.9)" stroke="#BBBABC" stroke-width="1"/>
+  <circle id="chrono-arc" r="24" fill="none" stroke="#05255A" stroke-width="2" transform="rotate(-90)" stroke-dasharray="150.8" stroke-dashoffset="150.8"/>
+  <circle id="chrono-tip" r="3" cx="0" cy="-24" fill="#C81A35"/>
+</svg>
+
+<div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+
+<script src="main.js"></script>
+</body>
+</html>
